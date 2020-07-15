@@ -1,0 +1,129 @@
+/* pesquisa */
+	.search {
+		border-top: 1px solid #dcdcdc;
+		.form {
+			display: flex;
+			.form-group {
+				margin: 0;
+				select {
+					border: 1px solid #dcdcdc;
+					padding: 15px 20px;
+					margin-left: -1px;
+					margin-top: -1px;
+				}
+				input {
+					border: 1px solid #dcdcdc;
+					padding: 16px 20px;
+					margin-left: -1px;
+					margin-top: -1px;
+				}
+			}
+		}
+	}
+
+/* Lista de profesores */
+	#lista_professores  {
+		padding: 30px 0 100px 0;
+		background-color: #eee;
+		.heading {
+			padding: 15px;
+			margin-bottom: 30px;
+			.title-results {
+				font-size: 19px;
+				font-weight: 600;
+			}
+		}
+		.results {
+			.item {
+				background-color: #fff;
+				box-shadow: 0 5px 7px #e0e5e8;
+				padding: 30px;
+				margin-bottom: 20px;
+				border-radius: 4px;
+				display: flex;
+				.image {
+					width: 165px;
+					height: 165px;
+					border-radius: 50%;
+					overflow: hidden;
+					img {
+						height: 100%;
+					}
+				}
+				.info {
+					padding: 0 40px;
+					.name {
+						display: flex;
+						h2 {
+							font-family: 'GloberxBold', sans-serif;
+							font-size: 23px;
+						}
+						.avaliacao {
+						    display: flex;
+						    align-items:  center;
+						    margin-top: -10px;
+						    margin-left: 20px;
+						    img {
+						    	width: 20px;
+						    	margin: 0 1px;
+						    }
+						    span {
+								font-size: 12px;
+								color: #999;
+								margin-left: 10px;
+								margin-top: 5px;
+						    }
+						}
+					}
+					.address {
+						font-size: 12px;
+						color: #999;
+						background: url('../images/pin.png') no-repeat center left;
+						padding: 5px 0 5px 20px;
+					}
+					p {
+						margin-top: 20px;
+					    line-height: 19px;
+					}
+					.icons {
+						display: flex;
+						margin-left: -10px;
+						margin-top: 25px;
+						.i {
+							margin: 0 10px;
+						}
+					}
+				}
+				.price {
+				    flex-direction: column;
+				    justify-content: center;
+				    align-items: center;
+				    text-align: center;
+					display: flex;
+					p {
+						font-family: 'GloberxBold',sans-serif;
+						font-size: 34px;
+						width: 150px;
+					    justify-content: center;
+					    line-height: 19px;
+						span {
+							font-size: 17px;
+						}
+						&.consult {
+							font-size: 28px;
+							margin-bottom: 20px;
+						}
+					}
+
+					.btn {
+						@extend %grd-secondary;
+					}
+				}
+			}
+		}
+		.ads {
+			aside {
+			    margin-bottom: 30px;
+			}
+		}
+	}

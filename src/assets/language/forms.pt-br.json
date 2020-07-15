@@ -1,0 +1,42 @@
+{
+  "message": null,
+  "errors": {},
+  "exception": null,
+  "hasError": false,
+  "model": {
+    "Common": {
+      "Warning": "Atenção",
+      "Error": "Erro",
+      "Infomation": "Informação",
+      "Wait": "Aguarde",
+      "Processing": "Processando",
+      "Loading": "Carregando",
+      "Ok": "Ok",
+      "Yes": "Sim",
+      "No": "No"
+    },
+    "UserFeature": {
+      "Authenticate": {
+        "PasswordLabel": "Password",
+        "PasswordValidationMessage": "Senha inválida",
+        "PasswordPlaceholder": "Digite sua senha",
+        "LoginLabel": "Email",
+        "LoginPlaceholder": "Digite seu e-mail de cadastro",
+        "LoginButton": "Entrar",
+        "FacebookButton": "Entrar com facebook",
+        "FacebookErrorMessage": "Ocorreu um problema o registrar pelo facebook",
+        "RegisterButton": "Cadastre-se",
+        "RecoverButton": "Esqueci minha senha",
+        "PasswordEmailInvalidErrorMessage": "Digite seu e-mail de cadastro e senha."
+      },
+      "Register": {
+        "FirstName": "Nome",
+        "FirstNameValidationMessage": "Você deve preenhcer seu nome",
+        "LastName": "SobreNome",
+        "LastNameValidationMessage": "Você deve preenhcer seu sobrenome",
+        "Email": "E-mail",
+        "EmailValidationMessage": "E-mail obrigatório"
+      }
+    }
+  }
+}

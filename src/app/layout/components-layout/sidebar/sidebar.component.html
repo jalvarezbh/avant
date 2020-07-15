@@ -1,0 +1,101 @@
+<div [class]="'app-sidebar sidebar-shadow ' + (config$ | async).sidebarTheme" (mouseover)="sidebarHover()"
+  (mouseout)="sidebarHover()">
+  <div class="app-sidebar-content">
+    <div class="app-sidebar-scroll">
+      <perfect-scrollbar [autoPropagation]="true">
+        <div class="v-sidebar-menu vsm-default">
+          <div class="vsm-list">
+            <ngb-accordion [destroyOnHide]="false" [closeOthers]="true" [activeIds]="extraParameter">
+              <ngb-panel>
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-header d-flex justify-content-between">
+                    <label>Dashboard</label>
+                    <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                      [ngClass]="{'is-active' : globals.toggleSidebar}" (click)="toggleSidebar()">
+                      <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                      </span>
+                    </button>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="financeiroForm">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-graph2"></i>
+                    <span class="vsm-title">Financeiro</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/widgets/chart-boxes-3" class="vsm-link">
+                          <span class="vsm-title">Gráficos</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel>
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-header d-flex justify-content-between">
+                    <label>Minha Conta</label>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="propostaForm">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-id"></i>
+                    <span class="vsm-title">Proposta</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/proposta" class="vsm-link"><span
+                            class="vsm-title">Incluir</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/alterarsenha" class="vsm-link"><span
+                            class="vsm-title">Confirmar</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="cadastroForm">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-id"></i>
+                    <span class="vsm-title">Cadastro</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/usuario" class="vsm-link"><span
+                            class="vsm-title">Dados Pessoais</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/alterarsenha" class="vsm-link"><span
+                            class="vsm-title">Alterar Senha</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              
+            </ngb-accordion>
+          </div>
+        </div>
+      </perfect-scrollbar>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+/* login & cadastro */
+	#login, #cadastro  {
+		padding: 100px 0 100px 0;
+		background-color: #eee;
+		.card {
+			width: 420px;
+			margin: 0 auto;
+			.card-body {
+				background-color: #fff;
+				box-shadow: 0 5px 7px #e0e5e8;
+				padding: 40px;
+				border-radius: 4px;
+				.card-title  {
+					font-size: 20px;
+					margin-bottom: 40px;
+					font-weight: 700;
+					color: blue;
+				}
+				.form-group {
+					label {
+						font-size: 13px;
+						color: #666;
+						font-family: 'Roboto', sans-serif;
+					}
+					.form-control {
+						height: 45px;
+						box-shadow: none;
+						font-family: 'Roboto', sans-serif;
+						&::placeholder {
+							font-size: 14px;
+						}
+						&:active,
+						&:focus {
+							border-color: gray;
+							&::placeholder {
+								color: gray;
+							}
+						}
+					}
+				}
+				button[type="submit"] {
+					margin: 20px 0;
+				}
+				.login-with-social {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					.btn {
+						width: 100%;
+						margin: 5px 0;
+						justify-content: center;
+					}
+				}
+				.forgot {
+					margin-top: 30px; 
+				}
+			}
+		}
+	}

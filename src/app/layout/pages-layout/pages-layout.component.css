@@ -1,0 +1,8 @@
+.app-main__outer {
+    padding-left: 0px !important;
+}
+
+.app-main__inner {
+    padding: 0px !important;   
+    flex: 1;
+}

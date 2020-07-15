@@ -1,0 +1,54 @@
+/* Reset */
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	box-sizing: border-box !important;
+	list-style-type: none;
+	line-height: 100%;
+}
+form {
+	input {
+		line-height: initial;
+	}
+	input,
+	textarea,
+	select {
+		outline: none !important;
+		&:active,
+		&:focus {
+			outline: none !important;
+		}
+	}
+}
+a,
+a:link,
+a:hover,
+a:active,
+a:visited,
+a:focus {
+	text-decoration: none !important;
+	outline: none !important;
+}
+button,
+button:active,
+button:focus {
+	outline: none !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 100%;
+	margin: 0;
+}
+ul,
+ol {
+	margin: 0;
+	list-style-type: none;
+}
+label {
+	font-weight: normal;
+}

@@ -1,0 +1,29 @@
+.app-footer{    
+    background-color: #f4f4f4;
+}
+
+.menu-footer-navigation {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding-top: 20px;         
+  }
+
+ .menu-footer-navigation ul li{
+    display: inline-block;
+    margin: 0 15px;
+    position: relative; 
+  }
+
+ .menu-footer-navigation a{
+    color: #222;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 500ms ease; 
+}
+
+.menu-footer-navigation a:hover{
+    color: #066a7e; 
+    text-decoration: none;
+}

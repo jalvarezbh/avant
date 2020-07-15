@@ -1,0 +1,34 @@
+<main id="siteContent" class="site-content">   
+    <div class="d-flex justify-content-center">
+        <form name="loginForm" [formGroup]="loginForm">
+            <div class="form-group">
+                <h2 class="form-title d-flex justify-content-center">Acesso Restrito</h2>
+			</div>
+			<div class="form-group">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" placeholder="E-mail" formControlName="email" class="form-control" />
+                <mat-error *ngIf="submitted && loginForm.get('email').hasError('required')">
+                    Campo E-mail é Obrigatório!
+                </mat-error>
+            </div> 
+            <div class="form-group">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" placeholder="Senha" formControlName="senha" class="form-control" />
+                <mat-error *ngIf="submitted && loginForm.get('senha').hasError('required')">
+                    Campo Senha é Obrigatório!
+                </mat-error>
+            </div>             
+            <div class="form-group">
+                <button class="btn login-btn" (click)="login();">
+                    <span>Confirmar</span>
+                </button>
+            </div>
+            <div class="form-group">
+                <button class="btn login-btn" (click)="login();">
+                    <span>Esqueceu a Senha</span>
+                </button>
+            </div>
+            
+        </form>
+    </div>   
+</main>

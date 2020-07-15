@@ -1,0 +1,55 @@
+<div class="row">  
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Dados Pessoais</label>
+                <form name="dadosForm" [formGroup]="dadosForm" (ngSubmit)="clickGravar()">
+                    <mat-form-field class="card-input-text col-md-12">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="nome" placeholder="Nome" required>
+                        <mat-error *ngIf="submitted && dadosForm.get('nome').hasError('required')">
+                            Campo Nome é Obrigatório!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="card-input-text col-md-6">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="email" placeholder="E-mail" required>
+                        <mat-error
+                            *ngIf="submitted && dadosForm.get('email').hasError('email') && !dadosForm.get('email').hasError('required')">
+                            Campo E-mail é Inválido!
+                        </mat-error>
+                        <mat-error *ngIf="submitted && dadosForm.get('email').hasError('required')">
+                            Campo E-mail é Obrigatório!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="card-input-text col-md-6">
+                        <mat-label>CPF</mat-label>
+                        <input matInput formControlName="cpf" [textMask]="{mask: cpfMask}" placeholder="CPF" required>                       
+                        <mat-error *ngIf="submitted && dadosForm.get('cpf').hasError('required')">
+                            Campo CPF é Obrigatório!
+                        </mat-error>
+                    </mat-form-field>                   
+                    <mat-form-field class="card-input-text col-md-6">
+                        <mat-label style="padding-left: 50px;">Celular</mat-label>
+                        <input id="celular" matInput ng2TelInput ng-intl-tel-input [textMask]="{mask: celularmask}"
+                            [ng2TelInputOptions]="{initialCountry: 'br'}"
+                            (countryChange)="onCountryChangeCel($event, 'celular')" formControlName="celular"
+                            required />
+                        <mat-error *ngIf="submitted && dadosForm.get('celular').hasError('required')">
+                            Campo Celular é Obrigatório!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="card-input-text col-md-6">
+                        <mat-label style="padding-left: 50px;">Telefone</mat-label>
+                        <input id="telefone" matInput ng2TelInput ng-intl-tel-input [textMask]="{mask: telefonemask}"
+                            [ng2TelInputOptions]="{initialCountry: 'br'}" formControlName="telefone"
+                            (countryChange)="onCountryChangePhone($event, 'telefone')" />
+                    </mat-form-field>                   
+                    <div class="div-btn col-md-12">
+                        <button class="btn">Gravar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

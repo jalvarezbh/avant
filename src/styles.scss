@@ -1,0 +1,177 @@
+@import "assets/base";
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.cdk-overlay-container {
+    position: fixed;
+    z-index: 10000;
+}
+
+.success {
+    background-color: green !important;
+    color: white !important;
+}
+
+.success .mat-simple-snackbar-action {
+    color: white !important;
+}
+
+.success .mat-simple-snackbar-action button {
+    background-color: green !important;
+    color: white !important;
+}
+
+.error {
+    background-color: red !important;
+    color: white !important;
+}
+
+.error .mat-simple-snackbar-action {
+    color: white !important;
+}
+
+.error .mat-simple-snackbar-action button {
+    background-color: red !important;
+    color: white !important;
+}
+
+.alert {
+    background-color: orange !important;
+    color: white !important;
+}
+
+.alert .mat-simple-snackbar-action {
+    color: white !important;
+}
+
+.alert .mat-simple-snackbar-action button {
+    background-color: orange !important;
+    color: white !important;
+}
+
+.card-title {
+    font-size: 20px;
+    margin-bottom: 30px;
+    margin-left: 15px;
+    margin-top: 20px;
+    font-weight: 500;
+    color: black;
+}
+.card-region{
+    border: 1px solid #0090da;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.imgPhoto {
+    border: 1px solid rgba(0, 4, 4, 0.125);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+
+[type="file"] {
+    // height: 0;
+    // overflow: hidden;
+    // width: 0;
+    display: none;
+}
+
+.card-input-text .mat-form-field-label-wrapper {
+    color: black;
+}
+
+.card-input-text .mat-form-field-flex {
+    border-bottom: 1px solid black;
+    opacity: 1;
+}
+
+.card-input-text .mat-error {
+    font-size: 100% !important;
+    margin-top: 0 !important;
+    top: calc(100% - 1.66em) !important;
+    color: red;
+}
+
+.card-checkbox {
+    background-color: white !important;
+    color: black !important;
+}
+
+.mat-checkbox-checked .mat-checkbox-background {
+    background-color: black !important;
+    color: white !important;
+}
+
+.mat-checkbox-frame {
+    border-width: 1.5px !important;
+}
+
+.mat-radio-container {
+    margin-left: 12px !important;
+}
+
+.mat-radio-outer-circle {
+    border-width: 1.5px !important;
+}
+
+.mat-radio-inner-circle {
+    border-width: 1.5px !important;
+    background-color: black !important;
+}
+
+.card-radio-text {
+    color: black;
+    display: inline-block;
+}
+
+.div-btn {
+    text-align: right;
+    padding-top: 30px;
+}
+
+.btn {
+    border: solid #0090da;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    width: 80px;
+}
+
+.cdk-overlay-pane {
+    background-color: white;
+}
+
+.mat-select-panel .mat-optgroup-label,
+.mat-select-panel .mat-option {
+    background-color: white !important;
+}
+
+mat-error {
+    font-size: 75% !important;
+    margin-top: 0.55em !important;
+    top: calc(100% - 1.66em) !important;
+    color: red;
+}

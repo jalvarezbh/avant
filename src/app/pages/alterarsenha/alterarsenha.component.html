@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Alterar Senha</label>
+                <form name="dadosForm" [formGroup]="dadosForm" (ngSubmit)="clickGravar()">
+                    <div class="row" style="padding-left: 15px;">
+                        <mat-form-field class="card-input-text col-md-4">
+                            <mat-label>Senha Atual</mat-label>
+                            <input matInput [type]="hideatual ? 'password' : 'text'" formControlName="senhaatual"
+                                placeholder="Senha Atual" required>
+                            <button mat-icon-button tabindex="-1" style="background-color: white; border: none;"
+                                matSuffix (click)="hideatual = !hideatual" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hideatual">
+                                <mat-icon>{{hideatual ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="submitted && dadosForm.get('senhaatual').hasError('required')">
+                                Campo Senha Atual é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row" style="padding-left: 15px;">
+                        <mat-form-field class="card-input-text col-md-4">
+                            <mat-label>Nova Senha</mat-label>
+                            <input matInput [type]="hidenova ? 'password' : 'text'" formControlName="senhanova"
+                                placeholder="Nova Senha" required>
+                            <button mat-icon-button tabindex="-1" style="background-color: white; border: none;"
+                                matSuffix (click)="hidenova = !hidenova" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hidenova">
+                                <mat-icon>{{hideatual ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="submitted && dadosForm.get('senhanova').hasError('required')">
+                                Campo Nova Senha é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row" style="padding-left: 15px;">
+                        <mat-form-field class="card-input-text col-md-4">
+                            <mat-label>Confirmar Nova Senha</mat-label>
+                            <input matInput [type]="hiderepetir ? 'password' : 'text'" formControlName="senharepetir"
+                                placeholder="Confirmar Nova Senha" required>
+                            <button mat-icon-button tabindex="-1" style="background-color: white; border: none;"
+                                matSuffix (click)="hiderepetir = !hiderepetir" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hiderepetir">
+                                <mat-icon>{{hideatual ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="submitted && dadosForm.get('senharepetir').hasError('required')">
+                                Campo Confirmar Nova Senha é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="div-btn col-md-4">
+                        <button class="btn">Gravar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

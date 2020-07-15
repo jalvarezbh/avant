@@ -1,0 +1,118 @@
+
+$search-box-size: 42px;
+
+.menu-header {
+  position: relative;
+  margin-right: ($nav-link-padding-x / 1.5);
+
+  .menu-header-div {
+    display: flex; 
+
+   .menu-header-navigation {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      padding-top: 20px;
+      
+      ul li{
+        display: inline-block;
+        margin: 0 15px;
+        position: relative; 
+
+        a{
+          color: #222;
+          font-family: 'Roboto', sans-serif;
+          font-size: 15px;
+          font-weight: 500;
+          transition: all 500ms ease; 
+        }
+
+        a:hover {
+          color: black; 
+          text-decoration: none;
+        }                  
+      }    
+    }
+  }
+
+  .close {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    cursor: pointer;
+    opacity: 0 !important;
+    transform: rotate(-180deg);
+    transition: all .2s cubic-bezier(0.285, -0.450, 0.935, 0.110);
+    transition-delay: 0.1s;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      background: $primary;
+      border-radius: 2px;
+    }
+
+    &::before {
+      width: 2px;
+      height: 20px;
+      left: 9px;
+      top: 0;
+    }
+
+    &::after {
+      width: 20px;
+      height: 2px;
+      left: 0;
+      top: 9px;
+    }
+  }
+
+  &.active {
+    width: 330px;
+
+    .input-holder {
+      width: 290px;
+      border-radius: 50px;
+      background: rgba(0, 0, 0, 0.05);
+      transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);
+
+      .search-input {
+        opacity: 1;
+        transform: translate(0, 11px);
+      }
+
+      .search-icon {
+        width: $search-box-size;
+        height: $search-box-size;
+        margin: 0;
+        border-radius: 30px;
+
+        span {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+
+    .close {
+      left: 300px;
+      opacity: .6 !important;
+      transform: rotate(45deg);
+      transition: all .6s cubic-bezier(0.000, 0.105, 0.035, 1.570);
+      transition-delay: 0.5s;
+
+      &:hover {
+        opacity: 1 !important;
+      }
+    }
+
+    & + .header-megamenu {
+      opacity: 0;
+    }
+
+  }
+}

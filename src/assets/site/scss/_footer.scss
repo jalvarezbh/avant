@@ -1,0 +1,27 @@
+/* FOOTER */
+	#footer {
+		padding: 40px 0;
+		background-color: #f4f4f4;
+		nav {
+			margin-bottom: 40px;
+			ul {
+				display: flex;
+				li {
+					margin-right: 40px;
+					a {
+						transition: all 500ms ease;
+						color: #333;
+					    font-weight: 600;
+						&:hover {
+							color: blue;
+						}
+					}
+				}
+			}
+		}
+		.copyright {
+			p {
+				color: #999;
+			}
+		}
+	}
