@@ -4,14 +4,20 @@ import { HttpBaseService } from '../../http/http-base.service';
 import { LoginService } from '../login/login.service';
 import { AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { PropostaModel } from '../../models';
 
 @Injectable({ providedIn: 'root' })
-export class ProdutoService extends HttpBaseService {
+export class PropostaService extends HttpBaseService {
     constructor(protected http: HttpClient, private loginService: LoginService) {
         super(http);
     }
 
     setIncluirProposta(registro: AbstractControl): Observable<any> {
-        return this.Post('Proposta/IncluirProposta', registro);
+        const userLogin = this.loginService.getUserLogin();
+        const proposta = new PropostaModel(registro, false);
+        proposta.idUsuario = userLogin.id;
+        proposta.idEmpresa = userLogin.idempresa;
+
+        return this.Post('Proposta/IncluirProposta', proposta);
     }
 }

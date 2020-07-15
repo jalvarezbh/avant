@@ -169,6 +169,14 @@ button {
     background-color: white !important;
 }
 
+.mat-option :hover{
+    background-color: #d1f3ff !important;
+}
+
+.mat-active{
+    background-color: #d1f3ff !important;
+}
+
 mat-error {
     font-size: 75% !important;
     margin-top: 0.55em !important;

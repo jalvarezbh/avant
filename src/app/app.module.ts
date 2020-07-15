@@ -32,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { Ng2TelInputModule } from 'ng2-tel-input';
+import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
 
 // SERVICES
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
@@ -70,6 +71,21 @@ import { PropostaComponent } from './pages/proposta/proposta.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
+};
+
+const customCurrencyMaskConfig = {
+  align: 'right',
+  allowNegative: true,
+  allowZero: true,
+  decimal: ',',
+  precision: 2,
+  prefix: 'R$ ',
+  suffix: '',
+  thousands: '.',
+  nullable: true,
+  min: null,
+  max: null,
+  inputMode: CurrencyMaskInputMode.FINANCIAL
 };
 
 @NgModule({
@@ -118,6 +134,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatToolbarModule,
     NgbModule,
     NgReduxModule,
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
     Ng2TelInputModule,
     PerfectScrollbarModule,
     ReactiveFormsModule,

@@ -57,7 +57,8 @@
 
                         <mat-form-field class="card-input-text col-md-2">
                             <mat-label>Número Apólice</mat-label>
-                            <input matInput formControlName="numeroApolice" placeholder="Número Apólice" required>
+                            <input matInput type="number" formControlName="numeroApolice" placeholder="Número Apólice"
+                                required>
                             <mat-error *ngIf="submitted && dadosForm.get('numeroApolice').hasError('required')">
                                 Campo Número Apólice é Obrigatório!
                             </mat-error>
@@ -93,7 +94,8 @@
 
                         <mat-form-field class="card-input-text col-md-2">
                             <mat-label>Valor Mensal Pago</mat-label>
-                            <input matInput formControlName="valorMensalPago" placeholder="Valor Mensal Pago" required>
+                            <input matInput formControlName="valorMensalPago" currencyMask
+                                placeholder="Valor Mensal Pago" required>
                             <mat-error *ngIf="submitted && dadosForm.get('valorMensalPago').hasError('required')">
                                 Campo Valor Mensal Pago é Obrigatório!
                             </mat-error>
@@ -113,7 +115,8 @@
                         </mat-form-field>
                         <mat-form-field class="card-input-text col-md-2">
                             <mat-label>Dia Pagamento</mat-label>
-                            <input matInput formControlName="diaPagamento" placeholder="Dia Pagamento" required>
+                            <input matInput formControlName="diaPagamento" type="number" placeholder="Dia Pagamento"
+                                required>
                             <mat-error *ngIf="submitted && dadosForm.get('diaPagamento').hasError('required')">
                                 Campo Dia Pagamento é Obrigatório!
                             </mat-error>
