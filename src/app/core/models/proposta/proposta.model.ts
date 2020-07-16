@@ -1,5 +1,3 @@
-import { DatePipe } from '@angular/common';
-
 export class PropostaModel {
     id: string;
     nome: string;
@@ -11,6 +9,7 @@ export class PropostaModel {
     idProduto: string;
     idProdutoValores: string;
     valorMensal: number;
+    valorMensalLabel: string;
     formaPagamento: string;
     diaPagamento: number;
     dataInicio: Date;
@@ -21,6 +20,23 @@ export class PropostaModel {
     constructor(registro: any, banco: boolean) {
         if (banco) {
             this.id = registro.Id;
+            this.nome = registro.Nome;
+            this.email = registro.Email;
+            this.celular = registro.Celular;
+            this.possuiFilho = registro.PossuiFilho;
+            this.numeroApolice = registro.NumeroApolice;
+            this.idProduto = registro.IdProduto;
+            this.idProdutoValores = registro.IdProdutoValores;
+            this.valorMensal = registro.ValorMensal;
+            this.formaPagamento = registro.FormaPagamento;
+            this.diaPagamento = registro.DiaPagamento;
+            this.situacao = registro.Situacao;
+            this.idUsuario = registro.IdUsuario;
+            this.idEmpresa = registro.IdEmpresa;
+            this.ativo = registro.Ativo;
+            this.dataNascimento = new Date(registro.DataNascimento);
+            this.dataInicio = new Date(registro.DataInicio);
+            this.valorMensalLabel = 'R$ ' + registro.ValorMensal;
         }
         else {
 

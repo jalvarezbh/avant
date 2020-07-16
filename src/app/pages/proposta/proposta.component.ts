@@ -86,7 +86,7 @@ export class PropostaComponent implements OnInit {
     }
 
     preencherForm() {
-        const dataAtual = this.datepipe.transform(new Date(), 'dd/MM/yyyy');        
+        const dataAtual = this.datepipe.transform(new Date(), 'dd/MM/yyyy');
         this.dadosForm = this.formBuilder.group({
             id: ['', ''],
             nome: ['', Validators.required],
@@ -110,7 +110,7 @@ export class PropostaComponent implements OnInit {
             situacao: ['', Validators.required],
             ativo: [true, '']
         });
-        
+
         this.controlSituacao.setValue({ descricao: 'Pendente' });
     }
 

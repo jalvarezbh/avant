@@ -20,4 +20,10 @@ export class PropostaService extends HttpBaseService {
 
         return this.Post('Proposta/IncluirProposta', proposta);
     }
+
+    async getBuscarPropostasPendente(): Promise<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa };
+        return await this.Get('Proposta/BuscarPropostasPendente', parameter).toPromise();
+    }
 }

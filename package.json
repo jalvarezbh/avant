@@ -43,7 +43,7 @@
     "ng2-charts": "^2.2.2",
     "ng2-tel-input": "^2.3.0",
     "ngx-country-select": "^2.0.6",
-    "ngx-currency": "^2.3.3",
+    "ngx-currency": "^2.0.1",
     "ngx-perfect-scrollbar": "^7.2.1",
     "redux": "^4.0.0",
     "rxjs": "~6.5.4",

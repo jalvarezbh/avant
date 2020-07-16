@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://avantwebapi.avantlife.com.br/api/'
+  apiUrl: 'https://avantwebapi.avantlife.com.br/api/'
 };

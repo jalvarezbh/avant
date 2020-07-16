@@ -9,6 +9,6 @@ export class LoginModel {
         this.id = registro.Id;
         this.nome = registro.Nome;
         this.email = registro.Email;
-        this.idempresa = registro.Id_Empresa;
+        this.idempresa = registro.IdEmpresa;
     }
 }

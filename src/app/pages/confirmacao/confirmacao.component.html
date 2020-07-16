@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Confirmação de Proposta 'Pendente'</label>
+                <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+                    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay; let i = index">
+                        <div *ngIf="i !== 4; then dados else acao"></div>
+                        <ng-template #dados>
+                            <th mat-header-cell class="header-row" *matHeaderCellDef> {{columnsToHeader[i]}} </th>
+                            <td mat-cell class="row-margin" *matCellDef="let element"> {{element[column]}} </td>
+                        </ng-template>
+                        <ng-template #acao>
+                            <th mat-header-cell class="header-row" style="text-align: center;width: 100px;" *matHeaderCellDef> {{columnsToHeader[i]}} </th>
+                            <td mat-cell class="row-margin grid-icon" style="width: 100px;" *matCellDef="let element">
+                                <i class="action-confirm fa fa-fw" aria-hidden="true" title="Confirmar"></i>
+                                <i class="action-cancel fa fa-fw" aria-hidden="true" title="Cancelar"></i>
+                            </td>
+                        </ng-template>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

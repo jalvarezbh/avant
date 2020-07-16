@@ -20,7 +20,8 @@ import {
   MatIconModule,
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MAT_CHECKBOX_CLICK_ACTION,
-  MatRadioModule
+  MatRadioModule,
+  MatTableModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
@@ -32,7 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { Ng2TelInputModule } from 'ng2-tel-input';
-import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 // SERVICES
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
@@ -68,6 +69,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { AlterarSenhaComponent } from './pages/alterarsenha/alterarsenha.component';
 import { PropostaComponent } from './pages/proposta/proposta.component';
+import { ConfirmacaoComponent } from './pages/confirmacao/confirmacao.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -84,8 +86,7 @@ const customCurrencyMaskConfig = {
   thousands: '.',
   nullable: true,
   min: null,
-  max: null,
-  inputMode: CurrencyMaskInputMode.FINANCIAL
+  max: null
 };
 
 @NgModule({
@@ -108,6 +109,7 @@ const customCurrencyMaskConfig = {
     UsuarioComponent,
     AlterarSenhaComponent,
     PropostaComponent,
+    ConfirmacaoComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -131,6 +133,7 @@ const customCurrencyMaskConfig = {
     MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatTableModule,
     MatToolbarModule,
     NgbModule,
     NgReduxModule,
