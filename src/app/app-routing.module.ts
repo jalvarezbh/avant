@@ -7,7 +7,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { AlterarSenhaComponent } from './pages/alterarsenha/alterarsenha.component';
 import { PropostaComponent } from './pages/proposta/proposta.component';
-import { ConfirmacaoComponent } from './pages/confirmacao/confirmacao.component';
+import { PropostaPendenteComponent } from './pages/propostapendente/propostapendente.component';
+import { PropostaAlterarComponent } from './pages/propostaalterar/propostaalterar.component';
+import { PropostaListarComponent } from './pages/propostalistar/propostalistar.component';
 
 const routes: Routes = [
   {
@@ -24,7 +26,9 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent, data: { extraParameter: '' } },
       { path: 'proposta', component: PropostaComponent, data: { extraParameter: 'propostaForm' } },
-      { path: 'confirmacao', component: ConfirmacaoComponent, data: { extraParameter: 'propostaForm' } },
+      { path: 'propostapendente', component: PropostaPendenteComponent, data: { extraParameter: 'propostaForm' } },
+      { path: 'propostalistar', component: PropostaListarComponent, data: { extraParameter: 'propostaForm' } },
+      { path: 'propostaalterar', component: PropostaAlterarComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'usuario', component: UsuarioComponent, data: { extraParameter: 'cadastroForm' } },
       { path: 'alterarsenha', component: AlterarSenhaComponent, data: { extraParameter: 'cadastroForm' } },
     ]

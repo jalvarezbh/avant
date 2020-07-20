@@ -9,12 +9,12 @@ export class PropostaModel {
     idProduto: string;
     idProdutoValores: string;
     valorMensal: number;
-    valorMensalLabel: string;
     formaPagamento: string;
     diaPagamento: number;
     dataInicio: Date;
     situacao: string;
     ativo: boolean;
+    observacao: string;
     idUsuario: string;
     idEmpresa: string;
     constructor(registro: any, banco: boolean) {
@@ -34,9 +34,9 @@ export class PropostaModel {
             this.idUsuario = registro.IdUsuario;
             this.idEmpresa = registro.IdEmpresa;
             this.ativo = registro.Ativo;
+            this.observacao = registro.Observacao;
             this.dataNascimento = new Date(registro.DataNascimento);
             this.dataInicio = new Date(registro.DataInicio);
-            this.valorMensalLabel = 'R$ ' + registro.ValorMensal;
         }
         else {
 
@@ -49,7 +49,7 @@ export class PropostaModel {
             if (dataInicioSplit.length === 3) {
                 this.dataInicio = new Date(dataInicioSplit[2], dataInicioSplit[1] - 1, dataInicioSplit[0]);
             }
-
+            this.id = registro.id;
             this.nome = registro.nome;
             this.email = registro.email;
             this.celular = registro.celular;
@@ -62,6 +62,7 @@ export class PropostaModel {
             this.diaPagamento = registro.diaPagamento;
             this.situacao = registro.situacao;
             this.ativo = registro.ativo;
+            this.observacao = registro.observacao;
         }
     }
 }

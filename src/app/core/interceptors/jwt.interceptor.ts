@@ -13,13 +13,13 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        this.loadingService.show();
+        this.loadingService.startLoading();        
         return from(next.handle(request).pipe(
             catchError(error => {
                 this.messageService.exibirErro(error);
                 return throwError(error);
             }),
-            finalize(() => { this.loadingService.hide(); })
+            finalize(() => { this.loadingService.endLoading(); })
         ));
     }
 }

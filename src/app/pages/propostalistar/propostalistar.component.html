@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Listagem de Propostas</label>
+                <form name="dadosForm">
+                    <div class="card-search">
+                        <mat-form-field class="card-input-text col-md-12">
+                            <mat-label>Pesquisar</mat-label>
+                            <input matInput (keyup)="pesquisar($event)" placeholder="Pesquisar" #input>
+                        </mat-form-field>
+                    </div>
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                        <ng-container matColumnDef="nome">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Nome </th>
+                            <td mat-cell class="row-margin column-nome-lista" *matCellDef="let row"> {{row.nome}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="numeroApolice">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Número Apólice
+                            </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.numeroApolice}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="valorMensal">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Valor Mensal Pago
+                            </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row">R$ {{row.valorMensal}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="situacao">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Situação
+                            </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.situacao}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ativo">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Ativo
+                            </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.ativo? 'Sim': 'Não'}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell class="header-row" style="text-align: center;width: 50px;"
+                                *matHeaderCellDef> Ação </th>
+                            <td mat-cell class="row-margin grid-icon" style="width: 50px;" *matCellDef="let element">
+                                <i class="action-edit fa fa-fw" aria-hidden="true" title="Editar" (click)= "editar(element.id)"></i>                             
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5,10, 15, 20]"></mat-paginator>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

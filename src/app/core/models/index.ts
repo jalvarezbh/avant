@@ -3,3 +3,5 @@ export * from './usuario/usuario.model';
 export * from './produto/produto.model';
 export * from './autocomplete/autocomplete.model';
 export * from './proposta/proposta.model';
+export * from './proposta/proposta-pendente.model';
+export * from './proposta/proposta-lista.model';

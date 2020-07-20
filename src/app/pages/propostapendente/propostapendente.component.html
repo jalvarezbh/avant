@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Confirmação de Proposta 'Pendente'</label>
+                <form name="dadosForm">
+                    <div class="card-search">
+                        <mat-form-field class="card-input-text col-md-12">
+                            <mat-label>Pesquisar</mat-label>
+                            <input matInput (keyup)="pesquisar($event)" placeholder="Pesquisar" #input>
+                        </mat-form-field>
+                    </div>
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                        <ng-container matColumnDef="nome">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Nome </th>
+                            <td mat-cell class="row-margin column-nome-pendente" *matCellDef="let row"> {{row.nome}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="numeroApolice">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Número Apólice
+                            </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.numeroApolice}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="valorMensal">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Valor Mensal Pago
+                            </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row">R$ {{row.valorMensal}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="diaPagamento">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Dia de Pagamento
+                            </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row" [style.color]="row.color">
+                                {{row.diaPagamento}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell class="header-row" style="text-align: center;width: 100px;"
+                                *matHeaderCellDef> Ação </th>
+                            <td mat-cell class="row-margin grid-icon" style="width: 100px;" *matCellDef="let element">
+                                <i class="action-confirm fa fa-fw" aria-hidden="true" title="Confirmar"></i>
+                                <i class="action-cancel fa fa-fw" aria-hidden="true" title="Cancelar"></i>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row"></tr>                       
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

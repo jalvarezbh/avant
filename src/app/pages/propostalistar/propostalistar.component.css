@@ -21,7 +21,7 @@ tr.detail-row {
 }
 
 td.mat-cell {
-    padding: 0;
+    /* padding: 0; */
     border-bottom-width: 0px;
     border-bottom-style: none;
 }
@@ -38,13 +38,21 @@ tr.element-row:hover {
     border-bottom-width: 0;
 }
 
-.action-confirm{
-    color: #85af2f; 
-    font-size: 2em; 
-    cursor: pointer;
-}
+.column-nome-lista {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 35% !important;
+    width: 35% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;  
+    word-break: break-word;  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
 
-.action-cancel{
+.action-edit{
     color: #0090da; 
     font-size: 2em; 
     cursor: pointer;

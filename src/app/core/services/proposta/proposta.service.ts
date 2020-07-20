@@ -21,9 +21,29 @@ export class PropostaService extends HttpBaseService {
         return this.Post('Proposta/IncluirProposta', proposta);
     }
 
+    setAlterarProposta(registro: AbstractControl): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const proposta = new PropostaModel(registro, false);
+        proposta.idUsuario = userLogin.id;
+        proposta.idEmpresa = userLogin.idempresa;
+        return this.Put('Proposta/AlterarProposta', proposta);
+    }
+
     async getBuscarPropostasPendente(): Promise<any> {
         const userLogin = this.loginService.getUserLogin();
         const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa };
         return await this.Get('Proposta/BuscarPropostasPendente', parameter).toPromise();
+    }
+
+    async getBuscarPropostas(): Promise<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa };
+        return await this.Get('Proposta/BuscarPropostas', parameter).toPromise();
+    }
+
+    async getBuscarProposta(id: string): Promise<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const parameter = { id, idusuario: userLogin.id, idempresa: userLogin.idempresa };
+        return await this.Get('Proposta/BuscarProposta', parameter).toPromise();
     }
 }

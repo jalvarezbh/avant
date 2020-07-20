@@ -21,7 +21,9 @@ import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MAT_CHECKBOX_CLICK_ACTION,
   MatRadioModule,
-  MatTableModule
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
@@ -69,7 +71,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { AlterarSenhaComponent } from './pages/alterarsenha/alterarsenha.component';
 import { PropostaComponent } from './pages/proposta/proposta.component';
-import { ConfirmacaoComponent } from './pages/confirmacao/confirmacao.component';
+import { PropostaAlterarComponent } from './pages/propostaalterar/propostaalterar.component';
+import { PropostaListarComponent } from './pages/propostalistar/propostalistar.component';
+import { PropostaPendenteComponent } from './pages/propostapendente/propostapendente.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -109,7 +113,9 @@ const customCurrencyMaskConfig = {
     UsuarioComponent,
     AlterarSenhaComponent,
     PropostaComponent,
-    ConfirmacaoComponent,
+    PropostaPendenteComponent,
+    PropostaAlterarComponent,
+    PropostaListarComponent
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -129,10 +135,12 @@ const customCurrencyMaskConfig = {
     MatInputModule,
     MatMomentDateModule,
     MatNativeDateModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatSortModule,
     MatTableModule,
     MatToolbarModule,
     NgbModule,

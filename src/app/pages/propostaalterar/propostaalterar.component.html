@@ -1,0 +1,168 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Editar Proposta</label>
+                <form name="dadosForm" [formGroup]="dadosForm">
+                    <div class="card-region">
+                        <mat-form-field class="card-input-text col-md-6">
+                            <mat-label>Nome</mat-label>
+                            <input matInput formControlName="nome" placeholder="Nome" required>
+                            <mat-error *ngIf="submitted && dadosForm.get('nome').hasError('required')">
+                                Campo Nome é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-6">
+                            <mat-label>E-mail</mat-label>
+                            <input matInput formControlName="email" placeholder="E-mail" required>
+                            <mat-error
+                                *ngIf="submitted && dadosForm.get('email').hasError('email') && !dadosForm.get('email').hasError('required')">
+                                Campo E-mail é Inválido!
+                            </mat-error>
+                            <mat-error *ngIf="submitted && dadosForm.get('email').hasError('required')">
+                                Campo E-mail é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-4">
+                            <mat-label>Data Nascimento</mat-label>
+                            <input matInput formControlName="dataNascimento" [textMask]="{mask: datemask}"
+                                placeholder="Data Nascimento" required>
+                            <mat-error
+                                *ngIf="submitted && dadosForm.get('dataNascimento').hasError('dateVaidator') && !dadosForm.get('dataNascimento').hasError('required')">
+                                Campo Data Nascimento é Inválido!
+                            </mat-error>
+                            <mat-error *ngIf="submitted && dadosForm.get('dataNascimento').hasError('required')">
+                                Campo Data Nascimento é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-4">
+                            <mat-label style="padding-left: 50px;">Celular</mat-label>
+                            <input id="celular" matInput ng2TelInput ng-intl-tel-input [textMask]="{mask: celularmask}"
+                                [ng2TelInputOptions]="{initialCountry: 'br'}"
+                                (countryChange)="onCountryChangeCel($event, 'celular')" formControlName="celular"
+                                required />
+                            <mat-error *ngIf="submitted && dadosForm.get('celular').hasError('required')">
+                                Campo Celular é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="card-radio-text col-md-4">
+                            <label> Possui filhos: </label>
+                            <mat-radio-group formControlName="possuifilhos">
+                                <mat-radio-button value="true">Sim</mat-radio-button>
+                                <mat-radio-button value="false">Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <div class="card-region" style="border-top: none;">
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Número Apólice</mat-label>
+                            <input matInput type="number" formControlName="numeroApolice" placeholder="Número Apólice"
+                                required>
+                            <mat-error *ngIf="submitted && dadosForm.get('numeroApolice').hasError('required')">
+                                Campo Número Apólice é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="card-input-text col-md-5">
+                            <mat-label>Produto</mat-label>
+                            <input matInput [matAutocomplete]="autop" [formControl]="controlProduto"
+                                formControlName="produto" placeholder="Produto"
+                                (ngModelChange)="filtroFaixaProduto($event)" required>
+                            <mat-autocomplete #autop="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let prod of filtroProduto | async" [value]="prod">
+                                    {{prod.descricao}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="submitted && dadosForm.get('produto').hasError('required')">
+                                Campo Produto é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-5">
+                            <mat-label>Faixa Etária</mat-label>
+                            <input matInput [matAutocomplete]="autof" [formControl]="controlFaixa"
+                                formControlName="faixa" placeholder="Faixa Etária" required>
+                            <mat-autocomplete #autof="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let f of filtroFaixa | async" [value]="f">
+                                    {{f.descricao}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="submitted && dadosForm.get('faixa').hasError('required')">
+                                Campo Faixa Etária é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Valor Mensal Pago</mat-label>
+                            <input matInput formControlName="valorMensalPago" currencyMask
+                                placeholder="Valor Mensal Pago" required>
+                            <mat-error *ngIf="submitted && dadosForm.get('valorMensalPago').hasError('required')">
+                                Campo Valor Mensal Pago é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Forma Pagamento</mat-label>
+                            <input matInput [matAutocomplete]="autopf" [formControl]="controlPagamento"
+                                formControlName="pagamento" placeholder="Forma Pagamento" required>
+                            <mat-autocomplete #autopf="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let pag of filtroPagamento | async" [value]="pag">
+                                    {{pag.descricao}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="submitted && dadosForm.get('pagamento').hasError('required')">
+                                Campo Forma Pagamento é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Dia Pagamento</mat-label>
+                            <input matInput formControlName="diaPagamento" type="number" placeholder="Dia Pagamento"
+                                required>
+                            <mat-error *ngIf="submitted && dadosForm.get('diaPagamento').hasError('required')">
+                                Campo Dia Pagamento é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-3">
+                            <mat-label>Data Início</mat-label>
+                            <input matInput formControlName="dataInicio" [textMask]="{mask: datemask}"
+                                placeholder="Data Início">
+                            <mat-error
+                                *ngIf="submitted && dadosForm.get('dataInicio').hasError('dateVaidator') && !dadosForm.get('dataInicio').hasError('required')">
+                                Campo Data Início é Inválido!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-3">
+                            <mat-label>Situação</mat-label>
+                            <input matInput [matAutocomplete]="autos" [formControl]="controlSituacao"
+                                formControlName="situacao" placeholder="Situação" required>
+                            <mat-autocomplete #autos="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let sit of filtroSituacao | async" [value]="sit">
+                                    {{sit.descricao}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="submitted && dadosForm.get('situacao').hasError('required')">
+                                Campo Situação é Obrigatório!
+                            </mat-error>
+                        </mat-form-field>
+                        
+                    </div>
+                    <div class="card-region" style="border-top: none;">
+                        <div class="card-radio-text col-md-4" style="padding-top: 15px;">
+                            <label> Proposta Ativa: </label>
+                            <mat-radio-group formControlName="ativo">
+                                <mat-radio-button value="true">Sim</mat-radio-button>
+                                <mat-radio-button value="false">Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <mat-form-field class="card-input-text col-md-8">
+                            <mat-label>Observação</mat-label>
+                            <input matInput formControlName="observacao" placeholder="Observação">
+                        </mat-form-field>
+                    </div>
+                    <div class="div-btn col-md-12">
+                        <a class="btn" style="margin-right: 10px;" href="propostalistar">Voltar</a>
+                        <button class="btn" (click)="clickGravar()">Gravar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
