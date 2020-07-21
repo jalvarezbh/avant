@@ -67,7 +67,7 @@
                         <mat-form-field class="card-input-text col-md-5">
                             <mat-label>Produto</mat-label>
                             <input matInput [matAutocomplete]="autop" [formControl]="controlProduto"
-                                formControlName="produto" placeholder="Produto"
+                                (click)="clickFiltro(controlProduto)" formControlName="produto" placeholder="Produto"
                                 (ngModelChange)="filtroFaixaProduto($event)" required>
                             <mat-autocomplete #autop="matAutocomplete" [displayWith]="displayFn">
                                 <mat-option *ngFor="let prod of filtroProduto | async" [value]="prod">
@@ -81,7 +81,8 @@
                         <mat-form-field class="card-input-text col-md-5">
                             <mat-label>Faixa Etária</mat-label>
                             <input matInput [matAutocomplete]="autof" [formControl]="controlFaixa"
-                                formControlName="faixa" placeholder="Faixa Etária" required>
+                                (click)="clickFiltro(controlFaixa)" formControlName="faixa" placeholder="Faixa Etária"
+                                required>
                             <mat-autocomplete #autof="matAutocomplete" [displayWith]="displayFn">
                                 <mat-option *ngFor="let f of filtroFaixa | async" [value]="f">
                                     {{f.descricao}}
@@ -103,7 +104,8 @@
                         <mat-form-field class="card-input-text col-md-2">
                             <mat-label>Forma Pagamento</mat-label>
                             <input matInput [matAutocomplete]="autopf" [formControl]="controlPagamento"
-                                formControlName="pagamento" placeholder="Forma Pagamento" required>
+                                (click)="clickFiltro(controlPagamento)" formControlName="pagamento"
+                                placeholder="Forma Pagamento" required>
                             <mat-autocomplete #autopf="matAutocomplete" [displayWith]="displayFn">
                                 <mat-option *ngFor="let pag of filtroPagamento | async" [value]="pag">
                                     {{pag.descricao}}
@@ -133,7 +135,8 @@
                         <mat-form-field class="card-input-text col-md-3">
                             <mat-label>Situação</mat-label>
                             <input matInput [matAutocomplete]="autos" [formControl]="controlSituacao"
-                                formControlName="situacao" placeholder="Situação" required>
+                                (click)="clickFiltro(controlSituacao)" formControlName="situacao" placeholder="Situação"
+                                required>
                             <mat-autocomplete #autos="matAutocomplete" [displayWith]="displayFn">
                                 <mat-option *ngFor="let sit of filtroSituacao | async" [value]="sit">
                                     {{sit.descricao}}

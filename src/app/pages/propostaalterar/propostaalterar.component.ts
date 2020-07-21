@@ -11,6 +11,7 @@ import { DateValidator } from 'src/app/core/validator';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
+import { FluxoService } from 'src/app/core/services/fluxo/fluxo.service';
 
 @Component({
     selector: 'app-propostaalterar',
@@ -46,7 +47,8 @@ export class PropostaAlterarComponent implements OnInit {
         private messageService: MessageService,
         private loginService: LoginService,
         private produtoService: ProdutoService,
-        private propostaService: PropostaService) {
+        private propostaService: PropostaService,
+        private fluxoService: FluxoService) {
         this.preencherForm(false);
     }
 
@@ -202,6 +204,10 @@ export class PropostaAlterarComponent implements OnInit {
         });
     }
 
+    clickFiltro(control: FormControl) {
+        control.setValue({ descricao: '' });
+    }
+
     private autoCompleteForm() {
         const produto = this.controlProduto.value ? this.controlProduto.value.id : '';
         const faixa = this.controlFaixa.value ? this.controlFaixa.value.id : '';
@@ -242,9 +248,30 @@ export class PropostaAlterarComponent implements OnInit {
         this.autoCompleteForm();
         if (this.dadosForm.valid) {
             await this.propostaService.setAlterarProposta(this.dadosForm.value).toPromise().then(reg => {
-                this.messageService.exibirSucesso('Proposta alterada com sucesso!');
-                this.proposta = new PropostaModel(reg, true);
-                this.preencherForm(true);
+                if (this.proposta.situacao !== reg.Situacao && reg.Situacao === 'Confirmado' && reg.Ativo === true) {
+                    this.messageService.exibirSucesso('Proposta confirmada com sucesso! Aguarde a criação do fluxo mensal.');
+                    this.fluxoService.setIncluirFluxoMensalNovaProposta(reg).subscribe(() => {
+                        this.messageService.exibirSucesso('Fluxo mensal incluído com sucesso!');
+                        this.proposta = new PropostaModel(reg, true);
+                        this.preencherForm(true);
+                    });
+                }
+                else {
+                    if ((this.proposta.situacao !== reg.Situacao && reg.Situacao === 'Cancelado') ||
+                        (this.proposta.ativo !== reg.Ativo && reg.Ativo === false)) {
+                        this.messageService.exibirSucesso('Proposta cancelada com sucesso! Aguarde cancelando fluxo mensal.');
+                        this.fluxoService.setInativarFluxoMensalCancelarProposta(reg).subscribe(() => {
+                            this.messageService.exibirSucesso('Fluxo mensal cancelado com sucesso!');
+                            this.proposta = new PropostaModel(reg, true);
+                            this.preencherForm(true);
+                        });
+                    }
+                    else {
+                        this.messageService.exibirSucesso('Proposta alterada com sucesso!');
+                        this.proposta = new PropostaModel(reg, true);
+                        this.preencherForm(true);
+                    }
+                }
             }).catch(() => this.autoCompleteReturn());
         } else {
             this.autoCompleteReturn();

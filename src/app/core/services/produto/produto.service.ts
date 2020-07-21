@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpBaseService } from '../../http/http-base.service';
-import { ProdutoModel, AutoCompleteModel } from '../../models';
+import { AutoCompleteModel } from '../../models';
 import { LoginService } from '../login/login.service';
 import { Observable } from 'rxjs';
-import { AbstractControl } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class ProdutoService extends HttpBaseService {

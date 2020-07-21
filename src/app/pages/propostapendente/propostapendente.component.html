@@ -35,8 +35,8 @@
                             <th mat-header-cell class="header-row" style="text-align: center;width: 100px;"
                                 *matHeaderCellDef> Ação </th>
                             <td mat-cell class="row-margin grid-icon" style="width: 100px;" *matCellDef="let element">
-                                <i class="action-confirm fa fa-fw" aria-hidden="true" title="Confirmar"></i>
-                                <i class="action-cancel fa fa-fw" aria-hidden="true" title="Cancelar"></i>
+                                <i class="action-confirm fa fa-fw" aria-hidden="true" (click)="confirmarProposta(element.id)" title="Confirmar"></i>
+                                <i class="action-cancel fa fa-fw" aria-hidden="true" (click)="cancelarProposta(element.id)" title="Cancelar"></i>
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>

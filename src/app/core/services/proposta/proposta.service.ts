@@ -29,6 +29,18 @@ export class PropostaService extends HttpBaseService {
         return this.Put('Proposta/AlterarProposta', proposta);
     }
 
+    setConfirmarProposta(id: string): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const proposta = { id, idUsuario: userLogin.id, idEmpresa: userLogin.idempresa };
+        return this.Put('Proposta/ConfirmarProposta', proposta);
+    }
+
+    setCancelarProposta(id: string): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const proposta = { id, idUsuario: userLogin.id, idEmpresa: userLogin.idempresa };
+        return this.Put('Proposta/CancelarProposta', proposta);
+    }
+
     async getBuscarPropostasPendente(): Promise<any> {
         const userLogin = this.loginService.getUserLogin();
         const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa };

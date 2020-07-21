@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'src/app/core/services/message/message.service';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { ProdutoService } from 'src/app/core/services/produto/produto.service';
@@ -10,14 +10,15 @@ import { getPhoneMask } from 'src/app/shared/util/util';
 import { DateValidator } from 'src/app/core/validator';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DOCUMENT } from '@angular/common';
+import { FluxoService } from 'src/app/core/services/fluxo/fluxo.service';
 
 @Component({
     selector: 'app-proposta',
     templateUrl: './proposta.component.html'
 })
 
-export class PropostaComponent implements OnInit {
+export class PropostaComponent implements OnInit, OnDestroy {
     controlProduto = new FormControl();
     filtroProduto: Observable<AutoCompleteModel[]>;
     produtos: ProdutoModel[] = [];
@@ -38,13 +39,27 @@ export class PropostaComponent implements OnInit {
     inicialCelMask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
     datemask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
     datepipe = new DatePipe('en-US');
+    mySubscription: any;
     constructor(
+        @Inject(DOCUMENT) private document: Document,
         private formBuilder: FormBuilder,
         private router: Router,
         private messageService: MessageService,
         private loginService: LoginService,
         private produtoService: ProdutoService,
-        private propostaService: PropostaService) {
+        private propostaService: PropostaService,
+        private fluxoService: FluxoService) {
+
+
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+        };
+        this.mySubscription = this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                // Trick the Router into believing it's last link wasn't previously loaded
+                this.router.navigated = false;
+            }
+        });
     }
 
     ngOnInit() {
@@ -57,6 +72,12 @@ export class PropostaComponent implements OnInit {
         }
         else {
             this.router.navigateByUrl('login');
+        }
+    }
+
+    ngOnDestroy() {
+        if (this.mySubscription) {
+            this.mySubscription.unsubscribe();
         }
     }
 
@@ -87,6 +108,7 @@ export class PropostaComponent implements OnInit {
 
     preencherForm() {
         const dataAtual = this.datepipe.transform(new Date(), 'dd/MM/yyyy');
+        this.controlSituacao.setValue({ descricao: 'Pendente' });
         this.dadosForm = this.formBuilder.group({
             id: ['', ''],
             nome: ['', Validators.required],
@@ -104,14 +126,12 @@ export class PropostaComponent implements OnInit {
             produto: ['', Validators.required],
             faixa: ['', Validators.required],
             valorMensalPago: ['', Validators.required],
-            pagamento: ['', Validators.required],
+            pagamento: [this.controlPagamento, Validators.required],
             diaPagamento: ['', Validators.required],
             dataInicio: [dataAtual, ''],
-            situacao: ['', Validators.required],
+            situacao: [this.controlSituacao, Validators.required],
             ativo: [true, '']
         });
-
-        this.controlSituacao.setValue({ descricao: 'Pendente' });
     }
 
     displayFn(registro: AutoCompleteModel): string {
@@ -136,6 +156,10 @@ export class PropostaComponent implements OnInit {
                 map(m => m ? this.filtroAutoComplete(m, this.faixas) : this.faixas.slice())
             );
         });
+    }
+
+    clickFiltro(control: FormControl) {
+        control.setValue({ descricao: '' });
     }
 
     private autoCompleteForm() {
@@ -178,11 +202,17 @@ export class PropostaComponent implements OnInit {
         this.autoCompleteForm();
         if (this.dadosForm.valid) {
             await this.propostaService.setIncluirProposta(this.dadosForm.value).toPromise().then(reg => {
-                this.messageService.exibirSucesso('Proposta incluída com sucesso!');
-                window.location.reload();
-                // this.submitted = false;
-                // this.preencherAutoComplete();
-                // this.preencherForm();
+                if (reg.Situacao === 'Confirmado') {
+                    this.messageService.exibirSucesso('Proposta incluída com sucesso! Aguarde a criação do fluxo mensal.');
+                    this.fluxoService.setIncluirFluxoMensalNovaProposta(reg).subscribe(() => {
+                        this.messageService.exibirSucesso('Fluxo mensal incluído com sucesso!');
+                        this.router.navigateByUrl('proposta');
+                    });
+                }
+                else {
+                    this.messageService.exibirSucesso('Proposta incluída com sucesso!');
+                    this.router.navigateByUrl('proposta');
+                }
             }).catch(() => this.autoCompleteReturn());
         } else {
             this.autoCompleteReturn();
