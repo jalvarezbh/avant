@@ -58,4 +58,10 @@ export class PropostaService extends HttpBaseService {
         const parameter = { id, idusuario: userLogin.id, idempresa: userLogin.idempresa };
         return await this.Get('Proposta/BuscarProposta', parameter).toPromise();
     }
+
+    getBuscarPropostasAniversariantes(mes: number): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa, mes };
+        return this.Get('Proposta/BuscarPropostasAniversariantes', parameter);
+    }
 }

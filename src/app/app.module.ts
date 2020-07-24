@@ -29,12 +29,15 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 // @NG
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { Ng2TelInputModule } from 'ng2-tel-input';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxCurrencyModule } from 'ngx-currency';
 
 // SERVICES
@@ -74,6 +77,8 @@ import { PropostaComponent } from './pages/proposta/proposta.component';
 import { PropostaAlterarComponent } from './pages/propostaalterar/propostaalterar.component';
 import { PropostaListarComponent } from './pages/propostalistar/propostalistar.component';
 import { PropostaPendenteComponent } from './pages/propostapendente/propostapendente.component';
+import { CalendarioComponent } from './shared/calendario/calendario.component';
+import { AniversarioComponent } from './shared/aniversario/aniversario.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -107,6 +112,8 @@ const customCurrencyMaskConfig = {
     SidebarComponent,
     LogoComponent,
     FooterComponent,
+    AniversarioComponent,
+    CalendarioComponent,
     HomeComponent,
     LoginComponent,
     LoadingComponent,
@@ -122,6 +129,10 @@ const customCurrencyMaskConfig = {
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
     CommonModule,
     FormsModule,
     HttpClientModule,
@@ -145,6 +156,7 @@ const customCurrencyMaskConfig = {
     MatToolbarModule,
     NgbModule,
     NgReduxModule,
+    NgxChartsModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
     Ng2TelInputModule,
     PerfectScrollbarModule,
@@ -176,7 +188,7 @@ const customCurrencyMaskConfig = {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private ngRedux: NgRedux<ArchitectUIState>, private devTool: DevToolsExtension) {
+  constructor(private ngRedux: NgRedux<ArchitectUIState>, devTool: DevToolsExtension) {
     this.ngRedux.configureStore(
       rootReducer,
       {} as ArchitectUIState,

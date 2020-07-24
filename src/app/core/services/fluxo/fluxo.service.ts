@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpBaseService } from '../../http/http-base.service';
 import { LoginService } from '../login/login.service';
 import { Observable } from 'rxjs';
-import { PropostaModel } from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class FluxoService extends HttpBaseService {
@@ -17,5 +16,11 @@ export class FluxoService extends HttpBaseService {
 
     setInativarFluxoMensalCancelarProposta(registro: any): Observable<any> {
         return this.Put('Fluxo/InativarFluxoMensalCancelarProposta', registro);
+    }
+
+    getBuscarFluxoMensalComissaoSemana(dataInicio: string, dataFinal: string): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa, dataInicio, dataFinal };
+        return this.Get('Fluxo/BuscarFluxoMensalComissaoSemana', parameter);
     }
 }
