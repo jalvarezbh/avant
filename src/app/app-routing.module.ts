@@ -10,6 +10,7 @@ import { PropostaComponent } from './pages/proposta/proposta.component';
 import { PropostaPendenteComponent } from './pages/propostapendente/propostapendente.component';
 import { PropostaAlterarComponent } from './pages/propostaalterar/propostaalterar.component';
 import { PropostaListarComponent } from './pages/propostalistar/propostalistar.component';
+import { ComissaoDiariaComponent } from './pages/comissaodiaria/comissaodiaria.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'propostapendente', component: PropostaPendenteComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostalistar', component: PropostaListarComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostaalterar', component: PropostaAlterarComponent, data: { extraParameter: 'propostaForm' } },
+      { path: 'comissaodiaria', component: ComissaoDiariaComponent, data: { extraParameter: 'comissaoForm' } },
       { path: 'usuario', component: UsuarioComponent, data: { extraParameter: 'cadastroForm' } },
       { path: 'alterarsenha', component: AlterarSenhaComponent, data: { extraParameter: 'cadastroForm' } },
     ]

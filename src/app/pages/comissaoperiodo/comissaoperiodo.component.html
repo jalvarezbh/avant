@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Comissão Prevista no Dia {{dataReferenciaTexto}}</label>
+
+                <div class="row card-search">
+                    <mat-form-field class="card-input-text col-md-3" appearance="fill">
+                        <mat-label>Dia Referência</mat-label>
+                        <input matInput [matDatepicker]="dpReferencia" (dateChange)="changeData($event)"
+                            [formControl]="dataInicio" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="dpReferencia"></mat-datepicker-toggle>
+                        <mat-datepicker #dpReferencia disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                    <div class="div-btn col-md-9">
+                        <button class="btn" (click)="confirmarTodosPagamentos()">Confirmar Todos</button>
+                    </div>
+                </div>
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                    <ng-container matColumnDef="nome">
+                        <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Nome </th>
+                        <td mat-cell class="row-margin column-nome-lista" *matCellDef="let row"> {{row.nome}} </td>
+                        <td mat-footer-cell class="footer-row" *matFooterCellDef>Valor Total Previsto </td>
+                    </ng-container>
+                    <ng-container matColumnDef="numeroApolice">
+                        <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Número Apólice
+                        </th>
+                        <td mat-cell class="row-margin" *matCellDef="let row"> {{row.numeroApolice}} </td>
+                        <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                    </ng-container>
+                    <ng-container matColumnDef="valorComissao">
+                        <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Valor Comissão
+                        </th>
+                        <td mat-cell class="row-margin" *matCellDef="let row">R$ {{row.valorComissao}} </td>
+                        <td mat-footer-cell class="footer-row" *matFooterCellDef> {{getTotalComissao()}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="situacao">
+                        <th mat-header-cell class="header-row" *matHeaderCellDef mat-sort-header> Situação
+                        </th>
+                        <td mat-cell class="row-margin" *matCellDef="let row"> {{row.situacao}} </td>
+
+                        <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                    </ng-container>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell class="header-row" style="text-align: center;width: 100px;"
+                            *matHeaderCellDef> Ação </th>
+                        <td mat-cell class="row-margin grid-icon" style="width: 100px;" *matCellDef="let element">
+                            <i class="action-confirm fa fa-fw" aria-hidden="true"
+                                (click)="confirmarPagamento(element.id)" title="Confirmar"></i>
+                            <i class="action-cancel fa fa-fw" aria-hidden="true" (click)="cancelarPagamento(element.id)"
+                                title="Cancelar"></i>
+                        </td>
+                        <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row"></tr>
+                    <tr mat-footer-row *matFooterRowDef="columnsToDisplay"></tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

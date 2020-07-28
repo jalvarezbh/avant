@@ -41,7 +41,6 @@ export class PropostaComponent implements OnInit, OnDestroy {
     datepipe = new DatePipe('en-US');
     mySubscription: any;
     constructor(
-        @Inject(DOCUMENT) private document: Document,
         private formBuilder: FormBuilder,
         private router: Router,
         private messageService: MessageService,

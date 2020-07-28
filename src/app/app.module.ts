@@ -37,7 +37,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { Ng2TelInputModule } from 'ng2-tel-input';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxCurrencyModule } from 'ngx-currency';
 
 // SERVICES
@@ -79,6 +78,7 @@ import { PropostaListarComponent } from './pages/propostalistar/propostalistar.c
 import { PropostaPendenteComponent } from './pages/propostapendente/propostapendente.component';
 import { CalendarioComponent } from './shared/calendario/calendario.component';
 import { AniversarioComponent } from './shared/aniversario/aniversario.component';
+import { ComissaoDiariaComponent } from './pages/comissaodiaria/comissaodiaria.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -122,7 +122,8 @@ const customCurrencyMaskConfig = {
     PropostaComponent,
     PropostaPendenteComponent,
     PropostaAlterarComponent,
-    PropostaListarComponent
+    PropostaListarComponent,
+    ComissaoDiariaComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -156,7 +157,6 @@ const customCurrencyMaskConfig = {
     MatToolbarModule,
     NgbModule,
     NgReduxModule,
-    NgxChartsModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
     Ng2TelInputModule,
     PerfectScrollbarModule,

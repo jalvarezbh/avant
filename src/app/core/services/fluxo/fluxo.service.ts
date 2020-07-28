@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpBaseService } from '../../http/http-base.service';
 import { LoginService } from '../login/login.service';
 import { Observable } from 'rxjs';
+import { ComissaoDiariaListaModel } from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class FluxoService extends HttpBaseService {
@@ -18,9 +19,25 @@ export class FluxoService extends HttpBaseService {
         return this.Put('Fluxo/InativarFluxoMensalCancelarProposta', registro);
     }
 
-    getBuscarFluxoMensalComissaoSemana(dataInicio: string, dataFinal: string): Observable<any> {
+    async getBuscarFluxoMensalComissaoSemana(dataInicio: string, dataFinal: string): Promise<any> {
         const userLogin = this.loginService.getUserLogin();
         const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa, dataInicio, dataFinal };
-        return this.Get('Fluxo/BuscarFluxoMensalComissaoSemana', parameter);
+        return await this.Get('Fluxo/BuscarFluxoMensalComissaoSemana', parameter).toPromise();
+    }
+
+    setConfirmarFluxoMensalLancamentos(registros: ComissaoDiariaListaModel[]): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const ids = registros.map(m => `'${m.id}'`);
+        const parameter = {Ids: ids, IdUsuario: userLogin.id, IdEmpresa: userLogin.idempresa};
+
+        return this.Put('Fluxo/ConfirmarFluxoMensalLancamentos', parameter);
+    }
+
+    setCancelarFluxoMensalLancamentos(registros: ComissaoDiariaListaModel[]): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const ids = registros.map(m => `'${m.id}'`);
+        const parameter = {Ids: ids, IdUsuario: userLogin.id, IdEmpresa: userLogin.idempresa};
+
+        return this.Put('Fluxo/CancelarFluxoMensalLancamentos', parameter);
     }
 }
