@@ -1,0 +1,39 @@
+.text-black {
+    color: black !important;
+}
+
+.bg-black {
+    background-color: black !important;
+}
+
+.text-pendente {
+    color: rgba(0,144,218,1) !important;
+}
+
+.bg-pendente {
+    background-color: rgba(0,144,218,1) !important;
+}
+
+.text-pago {
+    color: rgba(164,206,78,1) !important;
+}
+
+.bg-pago {
+    background-color: rgba(164,206,78,1) !important;
+}
+
+.text-atrasado {
+    color: rgba(210,118,0,1) !important;
+}
+
+.bg-atrasado {
+    background-color: rgba(210,118,0,1) !important;
+}
+
+.text-cancelado {
+    color: rgba(199,28,34,1) !important;
+}
+
+.bg-cancelado {
+    background-color: rgba(199,28,34,1) !important;
+}

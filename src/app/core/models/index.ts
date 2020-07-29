@@ -6,3 +6,4 @@ export * from './proposta/proposta.model';
 export * from './proposta/proposta-pendente.model';
 export * from './proposta/proposta-lista.model';
 export * from './comissao/comissao-diaria-lista.model';
+export * from './proposta/proposta-aniversario.model';

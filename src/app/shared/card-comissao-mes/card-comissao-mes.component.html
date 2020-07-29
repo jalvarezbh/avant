@@ -1,0 +1,118 @@
+<div class="row text-center">
+    <div class="col-md-12">
+        <label class="card-title">Total de Comissões</label>
+    </div>
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="widget-content p-0">
+                        <div class="widget-content-outer">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="widget-heading">Total Pendente</div>
+                                </div>
+                                <div class="widget-content-right">
+                                    <div class="widget-numbers text-pendente">R$ {{totalPendente}}</div>
+                                </div>
+                            </div>
+                            <div class="widget-progress-wrapper">
+                                <div class="progress-bar-xs progress">
+                                    <div class="progress-bar bg-pendente" role="progressbar"
+                                        [style.width.%]="percPendente"></div>
+                                </div>
+                                <div class="progress-sub-label">
+                                    <div class="sub-label-left">{{percentualPendente}}% do valor total</div>
+                                    <div class="sub-label-right">100%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="widget-content p-0">
+                        <div class="widget-content-outer">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="widget-heading">Total Pago</div>
+                                </div>
+                                <div class="widget-content-right">
+                                    <div class="widget-numbers text-pago">R$ {{totalPago}}</div>
+                                </div>
+                            </div>
+                            <div class="widget-progress-wrapper">
+                                <div class="progress-bar-lg progress-bar-animated progress">
+                                    <div class="progress-bar bg-pago" role="progressbar" [style.width.%]="percPago"></div>
+                                </div>
+                                <div class="progress-sub-label">
+                                    <div class="sub-label-left">{{percentualPago}}% do valor total</div>
+                                    <div class="sub-label-right">100%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="widget-content p-0">
+                        <div class="widget-content-outer">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="widget-heading">Total Atrasado</div>
+                                </div>
+                                <div class="widget-content-right">
+                                    <div class="widget-numbers text-atrasado">R$ {{totalAtrasado}}</div>
+                                </div>
+                            </div>
+                            <div class="widget-progress-wrapper">
+                                <div class="progress-bar-sm progress-bar-animated-alt progress">
+                                    <div class="progress-bar bg-atrasado" role="progressbar" [style.width.%]="percAtrasado"></div>
+                                </div>
+                                <div class="progress-sub-label">
+                                    <div class="sub-label-left">{{percentualAtrasado}}% do valor total</div>
+                                    <div class="sub-label-right">100%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="widget-content p-0">
+                        <div class="widget-content-outer">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="widget-heading">Total Cancelado</div>
+                                </div>
+                                <div class="widget-content-right">
+                                    <div class="widget-numbers text-cancelado">R$ {{totalCancelado}}</div>
+                                </div>
+                            </div>
+                            <div class="widget-progress-wrapper">
+                                <div class="progress-bar-xs progress-bar-animated-alt progress">
+                                    <div class="progress-bar bg-cancelado" role="progressbar" [style.width.%]="percCancelado"></div>
+                                </div>
+                                <div class="progress-sub-label">
+                                    <div class="sub-label-left">{{percentualCancelado}}% do valor total</div>
+                                    <div class="sub-label-right">100%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="widget-content p-0">
+                        <div class="widget-content-outer">
+                            <div class="widget-content-wrapper" style="padding-top: 20px;">
+                                <div class="widget-content-left">
+                                    <div class="widget-heading">Total Mensal</div>
+                                </div>
+                                <div class="widget-content-right">
+                                    <div class="widget-numbers text-black">R$ {{totalGeral}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

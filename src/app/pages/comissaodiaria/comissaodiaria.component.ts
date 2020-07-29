@@ -35,7 +35,7 @@ export class ComissaoDiariaComponent implements OnInit {
     decimalPipe = new DecimalPipe('en-US');
     dataReferencia = new Date();
     dataReferenciaTexto: string;
-    dataInicio = new FormControl(moment([this.dataReferencia.getFullYear(), this.dataReferencia.getMonth(), this.dataReferencia.getDate()]));
+    dataInicio = new FormControl({value: moment([this.dataReferencia.getFullYear(), this.dataReferencia.getMonth(), this.dataReferencia.getDate()]), disabled: true});
     constructor(
         private router: Router,
         private messageService: MessageService,

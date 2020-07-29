@@ -11,6 +11,7 @@ import { PropostaPendenteComponent } from './pages/propostapendente/propostapend
 import { PropostaAlterarComponent } from './pages/propostaalterar/propostaalterar.component';
 import { PropostaListarComponent } from './pages/propostalistar/propostalistar.component';
 import { ComissaoDiariaComponent } from './pages/comissaodiaria/comissaodiaria.component';
+import { ComissaoPeriodoComponent } from './pages/comissaoperiodo/comissaoperiodo.component';
 
 const routes: Routes = [
   {
@@ -26,11 +27,12 @@ const routes: Routes = [
     component: BaseLayoutComponent,
     children: [
       { path: 'home', component: HomeComponent, data: { extraParameter: '' } },
+      { path: 'comissaodiaria', component: ComissaoDiariaComponent, data: { extraParameter: 'comissaoForm' } },
+      { path: 'comissaoperiodo', component: ComissaoPeriodoComponent, data: { extraParameter: 'comissaoForm' } },
       { path: 'proposta', component: PropostaComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostapendente', component: PropostaPendenteComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostalistar', component: PropostaListarComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostaalterar', component: PropostaAlterarComponent, data: { extraParameter: 'propostaForm' } },
-      { path: 'comissaodiaria', component: ComissaoDiariaComponent, data: { extraParameter: 'comissaoForm' } },
       { path: 'usuario', component: UsuarioComponent, data: { extraParameter: 'cadastroForm' } },
       { path: 'alterarsenha', component: AlterarSenhaComponent, data: { extraParameter: 'cadastroForm' } },
     ]

@@ -2,17 +2,24 @@
     <div class="col-md-12">
         <div class="main-card mb-3 card content">
             <div class="card-body">
-                <label class="card-title">Comissão Prevista no Dia {{dataReferenciaTexto}}</label>
+                <label class="card-title">Comissão Prevista no Período {{dataInicioTexto}} - {{dataFinalTexto}}</label>
 
                 <div class="row card-search">
                     <mat-form-field class="card-input-text col-md-3" appearance="fill">
-                        <mat-label>Dia Referência</mat-label>
-                        <input matInput [matDatepicker]="dpReferencia" (dateChange)="changeData($event)"
-                            [formControl]="dataInicio" disabled>
-                        <mat-datepicker-toggle matSuffix [for]="dpReferencia"></mat-datepicker-toggle>
-                        <mat-datepicker #dpReferencia disabled="false"></mat-datepicker>
+                        <mat-label>Data Inicial</mat-label>
+                        <input matInput [matDatepicker]="dpInicio" (dateChange)="changeDataInicio($event)"
+                            [formControl]="dataInicioReferencia" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="dpInicio"></mat-datepicker-toggle>
+                        <mat-datepicker #dpInicio disabled="false"></mat-datepicker>
                     </mat-form-field>
-                    <div class="div-btn col-md-9">
+                    <mat-form-field class="card-input-text col-md-3" appearance="fill">
+                        <mat-label>Data Final</mat-label>
+                        <input matInput [matDatepicker]="dpFinal" (dateChange)="changeDataFinal($event)"
+                            [formControl]="dataFinalReferencia" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="dpFinal"></mat-datepicker-toggle>
+                        <mat-datepicker #dpFinal disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                    <div class="div-btn col-md-6">
                         <button class="btn" (click)="confirmarTodosPagamentos()">Confirmar Todos</button>
                     </div>
                 </div>

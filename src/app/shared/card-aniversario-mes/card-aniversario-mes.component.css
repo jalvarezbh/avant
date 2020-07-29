@@ -1,0 +1,12 @@
+.text-midle {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.text-black {
+    color: black !important;
+}
+
+.bg-black {
+    background-color: black !important;
+}

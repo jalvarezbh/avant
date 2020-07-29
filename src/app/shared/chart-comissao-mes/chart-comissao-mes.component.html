@@ -1,0 +1,19 @@
+<div class="row text-center">    
+    <div class="col-md-12">
+        <label class="card-title">Total de Comissões</label>       
+    </div>  
+    <div class="chart col-md-6">
+        <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [colors]="pieChartColors"
+                [legend]="pieChartLegend">
+        </canvas>
+      </div>  
+      <div class="col-md-6">
+        <app-card-comissao-mes></app-card-comissao-mes>
+      </div>
+</div>

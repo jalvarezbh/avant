@@ -10,7 +10,7 @@ export class AniversarioComponent {
     @Input() view: CalendarView;
 
     @Input() viewDate: Date;
-   
+
     @Input() locale = 'en';
 
     @Output() viewChange = new EventEmitter<CalendarView>();

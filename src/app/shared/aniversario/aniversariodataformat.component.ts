@@ -5,11 +5,7 @@ export const colors: any = {
     blue: {
         primary: '#d1f3ff',
         secondary: '#d1f3ff',
-    },
-    yellow: {
-        primary: '#e3bc08',
-        secondary: '#FDF1BA',
-    },
+    }
 };
 
 @Injectable()

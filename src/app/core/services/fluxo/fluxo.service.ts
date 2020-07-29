@@ -40,4 +40,10 @@ export class FluxoService extends HttpBaseService {
 
         return this.Put('Fluxo/CancelarFluxoMensalLancamentos', parameter);
     }
+
+    getBuscarFluxoMensalInicioMes(mes: number, ano: number): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa, mes, ano };
+        return this.Get('Fluxo/BuscarFluxoMensalInicioMes', parameter);
+    }
 }

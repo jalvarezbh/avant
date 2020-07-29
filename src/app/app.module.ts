@@ -31,6 +31,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {ChartsModule} from 'ng2-charts';
 
 // @NG
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -79,6 +80,11 @@ import { PropostaPendenteComponent } from './pages/propostapendente/propostapend
 import { CalendarioComponent } from './shared/calendario/calendario.component';
 import { AniversarioComponent } from './shared/aniversario/aniversario.component';
 import { ComissaoDiariaComponent } from './pages/comissaodiaria/comissaodiaria.component';
+import { ComissaoPeriodoComponent } from './pages/comissaoperiodo/comissaoperiodo.component';
+import { ChartComissaoMesComponent } from './shared/chart-comissao-mes/chart-comissao-mes.component';
+import { CardComissaoMesComponent } from './shared/card-comissao-mes/card-comissao-mes.component';
+import { CardPropostaMesComponent } from './shared/card-proposta-mes/card-proposta-mes.component';
+import { CardAniversarioMesComponent } from './shared/card-aniversario-mes/card-aniversario-mes.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -124,6 +130,11 @@ const customCurrencyMaskConfig = {
     PropostaAlterarComponent,
     PropostaListarComponent,
     ComissaoDiariaComponent,
+    ComissaoPeriodoComponent,
+    ChartComissaoMesComponent,
+    CardComissaoMesComponent,
+    CardPropostaMesComponent,
+    CardAniversarioMesComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -134,6 +145,7 @@ const customCurrencyMaskConfig = {
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    ChartsModule,
     CommonModule,
     FormsModule,
     HttpClientModule,

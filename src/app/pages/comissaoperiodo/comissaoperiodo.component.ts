@@ -33,9 +33,13 @@ export class ComissaoPeriodoComponent implements OnInit {
     columnsToDisplay = ['nome', 'numeroApolice', 'valorComissao', 'situacao', 'id'];
     datepipe = new DatePipe('en-US');
     decimalPipe = new DecimalPipe('en-US');
-    dataReferencia = new Date();
-    dataReferenciaTexto: string;
-    dataInicio = new FormControl(moment([this.dataReferencia.getFullYear(), this.dataReferencia.getMonth(), this.dataReferencia.getDate()]));
+    dataInicio = new Date();
+    dataInicioTexto: string;
+    dataFinal = new Date();
+    dataFinalTexto: string;
+    dataInicioReferencia: FormControl;
+    dataFinalReferencia: FormControl;
+
     constructor(
         private router: Router,
         private messageService: MessageService,
@@ -45,6 +49,14 @@ export class ComissaoPeriodoComponent implements OnInit {
 
     ngOnInit() {
         if (this.loginService.getUserLogon()) {
+            const first = this.dataInicio.getDate() - this.dataInicio.getDay();
+            const last = first + 6;
+            const dataLast = new Date();
+            this.dataFinal = new Date(dataLast.setDate(last));
+            this.dataInicio = new Date(this.dataInicio.setDate(first));
+
+            this.dataInicioReferencia = new FormControl({value: moment([this.dataInicio.getFullYear(), this.dataInicio.getMonth(), this.dataInicio.getDate()]), disabled: true});
+            this.dataFinalReferencia = new FormControl({value: moment([this.dataFinal.getFullYear(), this.dataFinal.getMonth(), this.dataFinal.getDate()]), disabled: true});
             this.buscarPesquisaBanco();
         }
         else {
@@ -53,9 +65,10 @@ export class ComissaoPeriodoComponent implements OnInit {
     }
 
     buscarPesquisaBanco() {
-        this.dataReferenciaTexto = this.datepipe.transform(this.dataReferencia, 'dd/MM/yyyy');
-        const dataInicio = this.datepipe.transform(this.dataReferencia, 'yyyy-MM-dd');
-        const dataFinal = this.datepipe.transform(addDays(this.dataReferencia, 1), 'yyyy-MM-dd');
+        this.dataInicioTexto = this.datepipe.transform(this.dataInicio, 'dd/MM/yyyy');
+        this.dataFinalTexto = this.datepipe.transform(this.dataFinal, 'dd/MM/yyyy');
+        const dataInicio = this.datepipe.transform(this.dataInicio, 'yyyy-MM-dd');
+        const dataFinal = this.datepipe.transform(addDays(this.dataFinal, 1), 'yyyy-MM-dd');
 
         this.fluxoService.getBuscarFluxoMensalComissaoSemana(dataInicio, dataFinal).then(reg => {
             this.dados = reg.map(m => new ComissaoDiariaListaModel(m));
@@ -64,8 +77,13 @@ export class ComissaoPeriodoComponent implements OnInit {
         });
     }
 
-    changeData(event: MatDatepickerInputEvent<Date>) {
-        this.dataReferencia = new Date(event.value);
+    changeDataInicio(event: MatDatepickerInputEvent<Date>) {
+        this.dataInicio = new Date(event.value);
+        this.buscarPesquisaBanco();
+    }
+
+    changeDataFinal(event: MatDatepickerInputEvent<Date>) {
+        this.dataFinal = new Date(event.value);
         this.buscarPesquisaBanco();
     }
 
@@ -83,7 +101,7 @@ export class ComissaoPeriodoComponent implements OnInit {
 
     async confirmarPagamento(id: string) {
         const comissaoLinha = [];
-        comissaoLinha.push({id});
+        comissaoLinha.push({ id });
         await this.fluxoService.setConfirmarFluxoMensalLancamentos(comissaoLinha).toPromise().then(reg => {
             this.messageService.exibirSucesso('Comissão confirmada com sucesso!');
             this.buscarPesquisaBanco();
@@ -92,7 +110,7 @@ export class ComissaoPeriodoComponent implements OnInit {
 
     async cancelarPagamento(id: string) {
         const comissaoLinha = [];
-        comissaoLinha.push({id});
+        comissaoLinha.push({ id });
         await this.fluxoService.setCancelarFluxoMensalLancamentos(comissaoLinha).toPromise().then(reg => {
             this.messageService.exibirSucesso('Comissão cancelada com sucesso!');
             this.buscarPesquisaBanco();
