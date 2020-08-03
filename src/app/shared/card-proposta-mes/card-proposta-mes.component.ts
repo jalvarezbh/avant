@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { PropostaService } from 'src/app/core/services/proposta/proposta.service';
 import { DecimalPipe } from '@angular/common';
 
@@ -7,9 +7,10 @@ import { DecimalPipe } from '@angular/common';
   templateUrl: './card-proposta-mes.component.html',
   styleUrls: ['./card-proposta-mes.component.css']
 })
-export class CardPropostaMesComponent implements OnInit {
+export class CardPropostaMesComponent implements OnChanges {
 
   @Input() viewDate: Date;
+  @Input() viewTitulo: boolean;
   decimalPipe = new DecimalPipe('en-US');
   registros = [];
   totalPendente: string;
@@ -25,7 +26,7 @@ export class CardPropostaMesComponent implements OnInit {
   constructor(private propostaService: PropostaService) {
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     const mes = this.viewDate.getMonth() + 1;
     const ano = this.viewDate.getFullYear();
     this.propostaService.getBuscarPropostasInicioMes(mes, ano).subscribe(reg => {

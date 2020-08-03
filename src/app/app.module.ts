@@ -25,6 +25,7 @@ import {
   MatSortModule,
   MatPaginatorModule
 } from '@angular/material';
+import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -85,6 +86,9 @@ import { ChartComissaoMesComponent } from './shared/chart-comissao-mes/chart-com
 import { CardComissaoMesComponent } from './shared/card-comissao-mes/card-comissao-mes.component';
 import { CardPropostaMesComponent } from './shared/card-proposta-mes/card-proposta-mes.component';
 import { CardAniversarioMesComponent } from './shared/card-aniversario-mes/card-aniversario-mes.component';
+import { ComparativoComissaoComponent } from './pages/comparativocomissao/comparativocomissao.component';
+import { ComparativoPropostaComponent } from './pages/comparativoproposta/comparativoproposta.component';
+import { RelatorioComissaoComponent } from './pages/relatoriocomissao/relatoriocomissao.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -135,6 +139,9 @@ const customCurrencyMaskConfig = {
     CardComissaoMesComponent,
     CardPropostaMesComponent,
     CardAniversarioMesComponent,
+    ComparativoComissaoComponent,
+    ComparativoPropostaComponent,
+    RelatorioComissaoComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -165,6 +172,7 @@ const customCurrencyMaskConfig = {
     MatSelectModule,
     MatSnackBarModule,
     MatSortModule,
+    MatTableExporterModule,
     MatTableModule,
     MatToolbarModule,
     NgbModule,

@@ -26,7 +26,7 @@
                     <a routerLink="/home"><span class="vsm-title">Inicial</span> </a>
                   </button>
                 </ng-template>
-              </ngb-panel>
+              </ngb-panel>             
               <ngb-panel>
                 <ng-template ngbPanelHeader>
                   <div class="vsm-header">Financeiro</div>
@@ -45,11 +45,34 @@
                     <div class="vsm-list">
                       <div class="vsm-item">
                         <a routerLinkActive="active-item" routerLink="/comissaodiaria" class="vsm-link"><span
-                            class="vsm-title">Dia</span></a>
+                            class="vsm-title">Receber Dia</span></a>
                       </div>
                       <div class="vsm-item">
                         <a routerLinkActive="active-item" routerLink="/comissaoperiodo" class="vsm-link"><span
-                            class="vsm-title">Período</span></a>
+                            class="vsm-title">Receber Período</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="comparativoForm">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-display1"></i>
+                    <span class="vsm-title">Comparativo</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/comparativocomissao" class="vsm-link"><span
+                            class="vsm-title">Comissões</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/comparativoproposta" class="vsm-link"><span
+                            class="vsm-title">Propostas</span></a>
                       </div>
                     </div>
                   </div>
@@ -82,6 +105,29 @@
                   </div>
                 </ng-template>
               </ngb-panel>
+              <ngb-panel id="relatorioForm">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-note2"></i>
+                    <span class="vsm-title">Relatórios</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/relatoriocomissao" class="vsm-link"><span
+                            class="vsm-title">Comissões</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/propostapendente" class="vsm-link"><span
+                            class="vsm-title">Propostas</span></a>
+                      </div>                     
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>              
               <ngb-panel>
                 <ng-template ngbPanelHeader>
                   <div class="vsm-header">Pessoal</div>

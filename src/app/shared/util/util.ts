@@ -19,3 +19,11 @@ export function getPhoneMask(e: any, tel: boolean, id: string): any[] {
     }
     return arrayMask;
 }
+
+export function isNullOrEmpty(valor: any) {
+    return valor === '' || valor === null || valor === undefined;
+}
+
+export function distinctArray<T>(array: T[]) {
+    return array.filter((item, i, ar) => ar.indexOf(item) === i);
+}

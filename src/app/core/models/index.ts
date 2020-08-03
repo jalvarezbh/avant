@@ -7,3 +7,5 @@ export * from './proposta/proposta-pendente.model';
 export * from './proposta/proposta-lista.model';
 export * from './comissao/comissao-diaria-lista.model';
 export * from './proposta/proposta-aniversario.model';
+export * from './comissao/comissao-filtro-relatorio.model';
+export * from './comissao/comissao-lista-relatorio.model';

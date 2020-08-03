@@ -1,0 +1,174 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Relatório Propostas</label>
+                <form name="dadosForm" [formGroup]="dadosForm" (ngSubmit)="buscarPesquisaBanco()">
+                    <div class="row card-search">
+                        <mat-form-field class="card-input-text col-md-5">
+                            <mat-label>Nome</mat-label>
+                            <input matInput formControlName="nome" placeholder="Nome">
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-3">
+                            <mat-label>Situação</mat-label>
+                            <input matInput [matAutocomplete]="autos" [formControl]="controlSituacao"
+                                (click)="clickFiltro(controlSituacao)" formControlName="situacao"
+                                placeholder="Situação">
+                            <mat-autocomplete #autos="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let sit of filtroSituacao | async" [value]="sit">
+                                    {{sit.descricao}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Data Inicial</mat-label>
+                            <input matInput formControlName="dataInicial" [textMask]="{mask: datemask}"
+                                placeholder="Data Inicial">
+                            <mat-error *ngIf="submitted && dadosForm.get('dataInicial').hasError('dateVaidator')">
+                                Campo Data Inicial é Inválido!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Data Final</mat-label>
+                            <input matInput formControlName="dataFinal" [textMask]="{mask: datemask}"
+                                placeholder="Data Final">
+                            <mat-error *ngIf="submitted && dadosForm.get('dataFinal').hasError('dateVaidator')">
+                                Campo Data Final é Inválido!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Número Apólice</mat-label>
+                            <input matInput type="number" formControlName="numeroApolice" placeholder="Número Apólice">
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-4">
+                            <mat-label>Produto</mat-label>
+                            <input matInput [matAutocomplete]="autop" [formControl]="controlProduto"
+                                (click)="clickFiltro(controlProduto)" formControlName="produto" placeholder="Produto"
+                                (ngModelChange)="filtroFaixaProduto($event)">
+                            <mat-autocomplete #autop="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let prod of filtroProduto | async" [value]="prod">
+                                    {{prod.descricao}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-4">
+                            <mat-label>Faixa Etária</mat-label>
+                            <input matInput [matAutocomplete]="autof" [formControl]="controlFaixa"
+                                (click)="clickFiltro(controlFaixa)" formControlName="faixa" placeholder="Faixa Etária">
+                            <mat-autocomplete #autof="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let f of filtroFaixa | async" [value]="f">
+                                    {{f.descricao}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <div class="div-btn col-md-2">
+                            <button class="btn btn-pesquisar">Pesquisar</button>
+                        </div>
+                    </div>
+                    <div style="width: 100%; overflow-x: scroll;">
+                        <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter"
+                            class="mat-elevation-z8">
+                            <ng-container matColumnDef="nome">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Nome </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.nome}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef>Valor Total Previsto </td>
+                            </ng-container>
+                            <ng-container matColumnDef="numeroApolice">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Número Apólice
+                                </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.numeroApolice}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <ng-container matColumnDef="valorComissao">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Valor Comissão
+                                </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row">R$ {{row.valorComissao}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef> {{getTotalComissao()}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="valorPago">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Valor Proposta
+                                </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.valorPago}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <ng-container matColumnDef="percentual">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Percentual </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.percentual}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <ng-container matColumnDef="dataPrevista">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Data Prevista </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.dataPrevista}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <ng-container matColumnDef="dataConfirmacao">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Data Confirmação </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.dataConfirmacao}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <ng-container matColumnDef="situacao">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Situação </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.situacao}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <ng-container matColumnDef="produtoDescricao">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Produto </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.produtoDescricao}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <!-- <ng-container matColumnDef="produtoCobertura">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef > Cobertura </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.produtoCobertura}} </td>
+                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                        </ng-container>        -->
+                            <ng-container matColumnDef="faixaEtaria">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Faixa Etária </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.faixaEtaria}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <!-- <ng-container matColumnDef="comissaoInicial">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef > Percentual Inicial </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoInicial}} </td>
+                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                        </ng-container>  
+                        <ng-container matColumnDef="comissaoAnual">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef > Percentual Anual </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoAnual}} </td>
+                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                        </ng-container>  
+                        <ng-container matColumnDef="comissaoFinal">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef > Percentual Final </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoFinal}} </td>
+                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                        </ng-container>  
+                        <ng-container matColumnDef="capitalSegurado">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef > Capital Segurado </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.capitalSegurado}} </td>
+                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                        </ng-container>  
+                        <ng-container matColumnDef="premioMinimo">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef > Prêmio Mínimo </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.premioMinimo}} </td>
+                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                        </ng-container>   -->
+                            <ng-container matColumnDef="observacao">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Observação </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.observacao}} </td>
+                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row"></tr>
+                            <tr mat-footer-row *matFooterRowDef="columnsToDisplay"></tr>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-end">
+
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+                        <button class="btn" style="height: 40px;margin-top: 10px;" (click)="dados.length > 0 && exporter.exportTable('xlsx',{fileName:'RelatorioComissao'})">Excel</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

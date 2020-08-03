@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="main-card mb-3 card content">
+      <div class="card-body">
+        <div class="col-md-12 border-title">
+          <label class="card-title title-center">Comparativo Mensal de Propostas</label>
+        </div>
+        <div class="row">
+          <div class="col-md-6 center-text">
+            <mat-form-field class="card-input-text" appearance="fill">
+              <mat-label>Mês Referência</mat-label>
+              <input matInput [matDatepicker]="dpMesA" [formControl]="dateMesA" disabled>
+              <mat-datepicker-toggle matSuffix [for]="dpMesA"></mat-datepicker-toggle>
+              <mat-datepicker #dpMesA startView="multi-year" (monthSelected)="chosenMonthHandlerA($event, dpMesA)"
+                panelClass="month-picker" disabled="false">
+              </mat-datepicker>
+            </mat-form-field>
+            <app-card-proposta-mes [viewTitulo]="false" [viewDate]="viewDateA"></app-card-proposta-mes>
+          </div>
+          <div class="col-md-6 center-text">
+            <mat-form-field class="card-input-text" appearance="fill">
+              <mat-label>Mês Referência</mat-label>
+              <input matInput [matDatepicker]="dpMesB" [formControl]="dateMesB" disabled>
+              <mat-datepicker-toggle matSuffix [for]="dpMesB"></mat-datepicker-toggle>
+              <mat-datepicker #dpMesB startView="multi-year" (monthSelected)="chosenMonthHandlerB($event, dpMesB)"
+                panelClass="month-picker" disabled="false">
+              </mat-datepicker>
+            </mat-form-field>
+            <app-card-proposta-mes [viewTitulo]="false" [viewDate]="viewDateB"></app-card-proposta-mes>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

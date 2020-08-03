@@ -12,6 +12,9 @@ import { PropostaAlterarComponent } from './pages/propostaalterar/propostaaltera
 import { PropostaListarComponent } from './pages/propostalistar/propostalistar.component';
 import { ComissaoDiariaComponent } from './pages/comissaodiaria/comissaodiaria.component';
 import { ComissaoPeriodoComponent } from './pages/comissaoperiodo/comissaoperiodo.component';
+import { ComparativoComissaoComponent } from './pages/comparativocomissao/comparativocomissao.component';
+import { ComparativoPropostaComponent } from './pages/comparativoproposta/comparativoproposta.component';
+import { RelatorioComissaoComponent } from './pages/relatoriocomissao/relatoriocomissao.component';
 
 const routes: Routes = [
   {
@@ -27,12 +30,15 @@ const routes: Routes = [
     component: BaseLayoutComponent,
     children: [
       { path: 'home', component: HomeComponent, data: { extraParameter: '' } },
+      { path: 'comparativocomissao', component: ComparativoComissaoComponent, data: { extraParameter: 'comparativoForm' } },
+      { path: 'comparativoproposta', component: ComparativoPropostaComponent, data: { extraParameter: 'comparativoForm' } },
       { path: 'comissaodiaria', component: ComissaoDiariaComponent, data: { extraParameter: 'comissaoForm' } },
       { path: 'comissaoperiodo', component: ComissaoPeriodoComponent, data: { extraParameter: 'comissaoForm' } },
       { path: 'proposta', component: PropostaComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostapendente', component: PropostaPendenteComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostalistar', component: PropostaListarComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostaalterar', component: PropostaAlterarComponent, data: { extraParameter: 'propostaForm' } },
+      { path: 'relatoriocomissao', component: RelatorioComissaoComponent, data: { extraParameter: 'relatorioForm' } },
       { path: 'usuario', component: UsuarioComponent, data: { extraParameter: 'cadastroForm' } },
       { path: 'alterarsenha', component: AlterarSenhaComponent, data: { extraParameter: 'cadastroForm' } },
     ]

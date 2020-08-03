@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { FluxoService } from 'src/app/core/services/fluxo/fluxo.service';
 
@@ -7,9 +7,10 @@ import { FluxoService } from 'src/app/core/services/fluxo/fluxo.service';
   templateUrl: './card-comissao-mes.component.html',
   styleUrls: ['./card-comissao-mes.component.css']
 })
-export class CardComissaoMesComponent implements OnInit {
+export class CardComissaoMesComponent implements OnChanges {
 
   @Input() viewDate: Date;
+  @Input() viewTitulo: boolean;
   decimalPipe = new DecimalPipe('en-US');
   registros = [];
   totalPendente: string;
@@ -28,7 +29,11 @@ export class CardComissaoMesComponent implements OnInit {
   constructor(private fluxoService: FluxoService) {
   }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.atualizaValorData();
+  }
+
+  private atualizaValorData() {
     const mes = this.viewDate.getMonth() + 1;
     const ano = this.viewDate.getFullYear();
     this.fluxoService.getBuscarFluxoMensalInicioMes(mes, ano).subscribe(reg => {
@@ -54,10 +59,18 @@ export class CardComissaoMesComponent implements OnInit {
         valorTotal += element.Valor;
       });
 
-      this.percPendente = valorPendente * 100 / valorTotal;
-      this.percPago = valorPago * 100 / valorTotal;
-      this.percAtrasado = valorAtrasado * 100 / valorTotal;
-      this.percCancelado = valorCancelado * 100 / valorTotal;
+      if (valorTotal > 0) {
+        this.percPendente = valorPendente * 100 / valorTotal;
+        this.percPago = valorPago * 100 / valorTotal;
+        this.percAtrasado = valorAtrasado * 100 / valorTotal;
+        this.percCancelado = valorCancelado * 100 / valorTotal;
+      }
+      else {
+        this.percPendente = 0;
+        this.percPago = 0;
+        this.percAtrasado = 0;
+        this.percCancelado = 0;
+      }
 
       this.totalPendente = this.decimalPipe.transform(valorPendente, '1.2-2').toString().replace('.', ',');
       this.totalPago = this.decimalPipe.transform(valorPago, '1.2-2').toString().replace('.', ',');
