@@ -49,7 +49,6 @@ export class PropostaComponent implements OnInit, OnDestroy {
         private propostaService: PropostaService,
         private fluxoService: FluxoService) {
 
-
         this.router.routeReuseStrategy.shouldReuseRoute = function () {
             return false;
         };
@@ -59,6 +58,8 @@ export class PropostaComponent implements OnInit, OnDestroy {
                 this.router.navigated = false;
             }
         });
+
+        this.preencherForm();
     }
 
     ngOnInit() {
@@ -66,8 +67,13 @@ export class PropostaComponent implements OnInit, OnDestroy {
         this.celularmask = this.inicialCelMask;
 
         if (this.loginService.getUserLogon()) {
-            this.preencherAutoComplete();
-            this.preencherForm();
+            this.loginService.getUserTempoAcesso().then(reg => {
+                if (!reg) {
+                    this.router.navigateByUrl('login');
+                }
+                this.preencherAutoComplete();
+                this.preencherForm();
+            });
         }
         else {
             this.router.navigateByUrl('login');

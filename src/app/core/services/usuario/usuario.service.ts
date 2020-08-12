@@ -27,4 +27,12 @@ export class UsuarioService extends HttpBaseService {
     setAlterarSenhaUsuario(registro: AbstractControl): Observable<any> {
         return this.Put('Usuario/AlterarSenhaUsuario', registro);
     }
+
+    setAlterarSenhaUsuarioToken(registro: AbstractControl): Observable<any> {
+        return this.Put('Usuario/AlterarSenhaUsuarioToken', registro);
+    }
+
+    setInserirUsuario(registro: AbstractControl): Observable<any> {
+        return this.Post('Usuario/InserirUsuario', registro);
+    }
 }

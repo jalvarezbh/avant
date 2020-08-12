@@ -1,0 +1,23 @@
+.initial-card {
+    text-align: center;
+    max-width: 600px;
+}
+
+.label-titulo{
+    text-align: center;
+    width: 80%;
+    font-size: x-large;
+    font-weight: 600;   
+    color: black;
+}
+
+.margin-btn{
+    width: 300px;
+    margin-left: 100px !important;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+}
+
+.btn{
+    width: 250px !important;
+}

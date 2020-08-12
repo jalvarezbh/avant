@@ -1,0 +1,82 @@
+table {
+    border: 1px solid #0090da;
+    width: 100%;
+}
+
+.header-row {
+    border-bottom: 1px solid #0090da;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: 1.125;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.footer-row {
+    border-bottom: 1px solid #0090da;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: 1.125;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.row-margin {
+    margin-left: 20px;
+}
+
+tr.detail-row {
+    border: none;
+    height: 0;
+}
+
+td.mat-cell {
+    /* padding: 0; */
+    border-bottom-width: 0px;
+    border-bottom-style: none;
+}
+
+tr.element-row:hover {
+    background: #d1f3ff;
+}
+
+.element-row {
+    border-bottom: 1px solid #0090da;
+}  
+
+.element-row td {
+    border-bottom-width: 0;
+}
+
+
+.column-nome-lista {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 35% !important;
+    width: 35% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;  
+    word-break: break-word;  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+.action-confirm{
+    color: #85af2f; 
+    font-size: 2em; 
+    cursor: pointer;
+}
+
+.action-cancel{
+    color: #0090da; 
+    font-size: 2em; 
+    cursor: pointer;
+}
+
+.div-btn{
+    padding-top: 15px !important;
+}
+
+.btn-pesquisar{
+    width: 160px !important;
+}

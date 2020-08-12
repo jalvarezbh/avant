@@ -33,6 +33,17 @@ export class LoginService extends HttpBaseService {
         this.getLogged.emit(false);
     }
 
+    async getUserTempoAcesso(): Promise<boolean> {
+        const userLogin = this.getUserLogin();
+        const parameter = { id: userLogin.id };
+        return await this.Get('Login/ValidarTempoAcesso', parameter).toPromise();
+    }
+
+    async getEnviarEmailLembrarSenha(email: string): Promise<boolean> {
+        const parameter = { email };
+        return await this.Get('Login/EnviarEmailLembrarSenha', parameter).toPromise();
+    }
+
     getUserLogon(): boolean {
         return localStorage.getItem('currentUser') !== null;
     }

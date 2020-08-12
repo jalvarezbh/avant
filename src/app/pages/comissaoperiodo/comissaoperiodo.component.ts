@@ -49,15 +49,21 @@ export class ComissaoPeriodoComponent implements OnInit {
 
     ngOnInit() {
         if (this.loginService.getUserLogon()) {
-            const first = this.dataInicio.getDate() - this.dataInicio.getDay();
-            const last = first + 6;
-            const dataLast = new Date();
-            this.dataFinal = new Date(dataLast.setDate(last));
-            this.dataInicio = new Date(this.dataInicio.setDate(first));
+            this.loginService.getUserTempoAcesso().then(reg => {
+                if (!reg) {
+                    this.router.navigateByUrl('login');
+                }
 
-            this.dataInicioReferencia = new FormControl({value: moment([this.dataInicio.getFullYear(), this.dataInicio.getMonth(), this.dataInicio.getDate()]), disabled: true});
-            this.dataFinalReferencia = new FormControl({value: moment([this.dataFinal.getFullYear(), this.dataFinal.getMonth(), this.dataFinal.getDate()]), disabled: true});
-            this.buscarPesquisaBanco();
+                const first = this.dataInicio.getDate() - this.dataInicio.getDay();
+                const last = first + 6;
+                const dataLast = new Date();
+                this.dataFinal = new Date(dataLast.setDate(last));
+                this.dataInicio = new Date(this.dataInicio.setDate(first));
+
+                this.dataInicioReferencia = new FormControl({ value: moment([this.dataInicio.getFullYear(), this.dataInicio.getMonth(), this.dataInicio.getDate()]), disabled: true });
+                this.dataFinalReferencia = new FormControl({ value: moment([this.dataFinal.getFullYear(), this.dataFinal.getMonth(), this.dataFinal.getDate()]), disabled: true });
+                this.buscarPesquisaBanco();
+            });
         }
         else {
             this.router.navigateByUrl('login');

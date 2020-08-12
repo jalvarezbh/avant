@@ -1,0 +1,11 @@
+.form-title{
+    color: black;
+    font-size: x-large;
+    font-weight: 600;   
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.btn{
+    width: 120px !important;
+}

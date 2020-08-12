@@ -70,4 +70,18 @@ export class PropostaService extends HttpBaseService {
         const parameter = { idusuario: userLogin.id, idempresa: userLogin.idempresa, mes, ano };
         return this.Get('Proposta/BuscarPropostasInicioMes', parameter);
     }
+
+    getBuscarRelatorioPropostas(filtro: any): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        filtro.idusuario = userLogin.id;
+        filtro.idempresa = userLogin.idempresa;
+        return this.Get('Proposta/BuscarRelatorioPropostas', filtro);
+    }
+
+    getBuscarRelatorioClientes(filtro: any): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        filtro.idusuario = userLogin.id;
+        filtro.idempresa = userLogin.idempresa;
+        return this.Get('Proposta/BuscarRelatorioClientes', filtro);
+    }
 }

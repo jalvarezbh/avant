@@ -4,7 +4,6 @@ import { HttpBaseService } from '../../http/http-base.service';
 import { LoginService } from '../login/login.service';
 import { Observable } from 'rxjs';
 import { ComissaoDiariaListaModel, AutoCompleteModel } from '../../models';
-import { URLSearchParams } from 'url';
 
 @Injectable({ providedIn: 'root' })
 export class FluxoService extends HttpBaseService {

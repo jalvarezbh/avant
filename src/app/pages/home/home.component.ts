@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   setDateTitle() {
-    const mes = this.viewDate.getMonth();
+    const mes = this.viewDate.getMonth() + 1;
     const ano = this.viewDate.getFullYear();
     switch (mes) {
       case 1:

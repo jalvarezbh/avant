@@ -39,4 +39,12 @@ export class LoginComponent implements OnInit {
       });
     }
   }
+
+  esqueceuSenha(): void {    
+    if (this.loginForm.value.email !== '') {
+      this.loginService.getEnviarEmailLembrarSenha(this.loginForm.value.email).then(() => {
+        this.messageService.exibirAlerta('Foi enviado um e-mail para redefinir a senha.');
+      });
+    }
+  }
 }

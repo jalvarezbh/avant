@@ -140,7 +140,7 @@ export class RelatorioComissaoComponent implements OnInit {
             filtro.situacao = this.controlSituacao.value ? this.controlSituacao.value.id : '';
             filtro.dataInicial = this.dadosForm.value.dataInicial;
             filtro.dataFinal = this.dadosForm.value.dataFinal;
-            filtro.numeroApolice = this.dadosForm.value.numeroApolice;
+            filtro.numeroApolice = this.dadosForm.value.numeroApolice ? this.dadosForm.value.numeroApolice : '';
             filtro.produto = this.controlProduto.value ? this.controlProduto.value.id : '';
             filtro.faixa = this.controlFaixa.value ? this.controlFaixa.value.id : '';
 

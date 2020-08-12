@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Relatório Clientes</label>
+                <form name="dadosForm" [formGroup]="dadosForm" (ngSubmit)="buscarPesquisaBanco()">
+                    <div class="row card-search">
+                        <mat-form-field class="card-input-text col-md-5">
+                            <mat-label>Nome</mat-label>
+                            <input matInput formControlName="nome" placeholder="Nome">
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Aniversário Mês Inicial</mat-label>
+                            <input matInput formControlName="mesInicial" type="number" placeholder="Aniversário Mês Inicial">                           
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-2">
+                            <mat-label>Aniversário Mês Final</mat-label>
+                            <input matInput formControlName="mesFinal" type="number" placeholder="Aniversário Mês Final">
+                           
+                        </mat-form-field>
+                        <div class="card-radio-text col-md-3" style="margin-top: 12px;">
+                            <label> Possui filhos: </label>
+                            <mat-radio-group formControlName="possuiFilhos">
+                                <mat-radio-button value="true">Sim</mat-radio-button>
+                                <mat-radio-button value="false">Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="div-btn col-md-12">
+                            <button class="btn btn-pesquisar">Pesquisar</button>
+                        </div>
+                    </div>
+
+                    <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter"
+                        class="mat-elevation-z8">
+                        <ng-container matColumnDef="nome">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef> Nome </th>
+                            <td mat-cell class="row-margin column-nome-lista" *matCellDef="let row"> {{row.nome}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="celular">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef> Celular </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.celular}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="email">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef> E-mail </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.email}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="dataNascimento">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef> Data Nascimento </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.dataNascimento}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="possuiFilhos">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef> Possui Filhos? </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.possuiFilhos}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row">
+                        </tr>
+                    </table>
+                    <div class="d-flex justify-content-end">
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+                        <button class="btn" style="height: 40px;margin-top: 10px;"
+                            (click)="dados.length > 0 && exporter.exportTable('xlsx',{fileName:'RelatorioCliente'})">Excel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

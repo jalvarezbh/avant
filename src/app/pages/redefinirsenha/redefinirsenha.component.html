@@ -1,0 +1,43 @@
+<main id="siteContent" class="site-content">
+    <div class="d-flex justify-content-center">
+        <form name="dadosForm" [formGroup]="dadosForm">
+            <div class="form-group">
+                <h2 class="form-title d-flex justify-content-center">Redefinir Senha</h2>
+            </div>
+            <div class="form-group">
+                <label for="senhanova" class="form-label">Nova Senha</label>
+                <div class="row">
+                    <input formControlName="senhanova" [type]="hidenova ? 'password' : 'text'" class="form-control"
+                        placeholder="Nova Senha" required>
+                    <button mat-icon-button tabindex="-1" style="background-color: white; border: none;" matSuffix
+                        (click)="hidenova = !hidenova" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hidenova">
+                        <mat-icon>{{hideatual ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button></div>
+                <mat-error *ngIf="submitted && dadosForm.get('senhanova').hasError('required')">
+                    Campo Nova Senha é Obrigatório!
+                </mat-error>
+            </div>
+            <div class="form-group">
+                <label for="senharepetir" class="form-label">Confirmar Nova Senha</label>
+                <div class="row">
+                    <input formControlName="senharepetir" [type]="hiderepetir ? 'password' : 'text'"
+                        class="form-control" placeholder="Confirmar Nova Senha" required>
+                    <button mat-icon-button tabindex="-1" style="background-color: white; border: none;" matSuffix
+                        (click)="hiderepetir = !hiderepetir" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hiderepetir">
+                        <mat-icon>{{hideatual ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </div>
+                <mat-error *ngIf="submitted && dadosForm.get('senharepetir').hasError('required')">
+                    Campo Confirmar Nova Senha é Obrigatório!
+                </mat-error>
+            </div>
+            <div class="form-group">
+                <button class="btn login-btn" (click)="clickGravar();">
+                    <span>Gravar</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</main>

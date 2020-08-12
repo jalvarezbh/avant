@@ -31,8 +31,7 @@ export class MessageService {
             mensagem = error.statusText;
         }
 
-        if (error.status === 401) {
-            mensagem = 'Acesso expirado. É necessário fazer o Login na aplicação novamente!';
+        if (error !== null && error.status === 401) {
             this.router.navigateByUrl('login');
             this.loginService.setUserLogout();
         }

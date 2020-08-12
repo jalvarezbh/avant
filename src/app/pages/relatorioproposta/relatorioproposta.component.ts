@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/login/login.service';
-import { ProdutoModel, AutoCompleteModel, ComissaoFiltroRelatorioModel, ComissaoListaRelatorioModel } from 'src/app/core/models';
+import { ProdutoModel, AutoCompleteModel, ComissaoListaRelatorioModel, PropostaFiltroRelatorioModel, PropostaListaRelatorioModel } from 'src/app/core/models';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { FluxoService } from 'src/app/core/services/fluxo/fluxo.service';
 import { DecimalPipe } from '@angular/common';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { MessageService } from 'src/app/core/services/message/message.service';
@@ -11,6 +10,7 @@ import { Observable } from 'rxjs';
 import { ProdutoService } from 'src/app/core/services/produto/produto.service';
 import { startWith, map } from 'rxjs/operators';
 import { DateValidator } from 'src/app/core/validator';
+import { PropostaService } from 'src/app/core/services/proposta/proposta.service';
 
 @Component({
     selector: 'app-relatorioproposta',
@@ -32,26 +32,30 @@ export class RelatorioPropostaComponent implements OnInit {
     submitted = false;
     datemask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
-    dataSource: MatTableDataSource<ComissaoListaRelatorioModel>;
-    dados: ComissaoListaRelatorioModel[] = [];
+    dataSource: MatTableDataSource<PropostaListaRelatorioModel>;
+    dados: PropostaListaRelatorioModel[] = [];
     @ViewChild(MatPaginator) paginator: MatPaginator;
     columnsToDisplay = [
         'nome',
+        'celular',
+        'email',
+        'dataNascimento',
+        'possuiFilhos',
         'numeroApolice',
-        'valorComissao',
-        'valorPago',
-        'percentual',
-        'dataPrevista',
-        'dataConfirmacao',
+        'valorMensal',
+        'formaPagamento',
+        'diaPagamento',
+        'dataInicio',
         'situacao',
+        'ativo',
         'produtoDescricao',
-        // 'produtoCobertura',
+        'produtoCobertura',
         'faixaEtaria',
-        // 'comissaoInicial',
-        // 'comissaoAnual',
-        // 'comissaoFinal',
-        // 'capitalSegurado',
-        // 'premioMinimo',
+        'comissaoInicial',
+        'comissaoAnual',
+        'comissaoFinal',
+        'capitalSegurado',
+        'premioMinimo',
         'observacao'];
 
 
@@ -62,7 +66,7 @@ export class RelatorioPropostaComponent implements OnInit {
         private router: Router,
         private messageService: MessageService,
         private loginService: LoginService,
-        private fluxoService: FluxoService,
+        private propostaService: PropostaService,
         private produtoService: ProdutoService) {
 
         this.dadosForm = this.formBuilder.group({
@@ -80,6 +84,7 @@ export class RelatorioPropostaComponent implements OnInit {
         if (this.loginService.getUserLogon()) {
             this.paginator._intl.itemsPerPageLabel = 'Itens por página';
             this.preencherAutoComplete();
+            this.buscarPesquisaBanco();
         }
         else {
             this.router.navigateByUrl('login');
@@ -87,7 +92,7 @@ export class RelatorioPropostaComponent implements OnInit {
     }
 
     preencherAutoComplete() {
-        this.situacoes = this.fluxoService.getAutoCompleteSituacao();
+        this.situacoes = this.produtoService.getAutoCompleteSituacao();
         this.filtroSituacao = this.controlSituacao.valueChanges.pipe(
             startWith(''),
             map(m => typeof m === 'string' ? m : m.descricao),
@@ -135,30 +140,26 @@ export class RelatorioPropostaComponent implements OnInit {
     buscarPesquisaBanco() {
         this.submitted = true;
         if (this.dadosForm.valid) {
-            const filtro = new ComissaoFiltroRelatorioModel();
+            const filtro = new PropostaFiltroRelatorioModel();
             filtro.nome = this.dadosForm.value.nome;
-            filtro.situacao = this.controlSituacao.value ? this.controlSituacao.value.id : '';
+            filtro.situacao = this.controlSituacao.value ? this.controlSituacao.value.descricao : '';
             filtro.dataInicial = this.dadosForm.value.dataInicial;
             filtro.dataFinal = this.dadosForm.value.dataFinal;
-            filtro.numeroApolice = this.dadosForm.value.numeroApolice;
+            filtro.numeroApolice = this.dadosForm.value.numeroApolice ? this.dadosForm.value.numeroApolice : '';
             filtro.produto = this.controlProduto.value ? this.controlProduto.value.id : '';
             filtro.faixa = this.controlFaixa.value ? this.controlFaixa.value.id : '';
 
-            if (filtro.validarUmObrigatorio()) {
-                this.fluxoService.getBuscarRelatorioFluxoMensal(filtro).subscribe(reg => {
-                    this.dados = reg.map(m => new ComissaoListaRelatorioModel(m));
-                    this.dataSource = new MatTableDataSource(this.dados);
-                    this.paginator._intl.itemsPerPageLabel = 'Itens por página';
-                    this.dataSource.paginator = this.paginator;
-                });
-            } else {
-                this.messageService.exibirAlerta('Informar pelo menos um campo de filtro no relatório.');
-            }
+            // if (filtro.validarUmObrigatorio()) {
+            this.propostaService.getBuscarRelatorioPropostas(filtro).subscribe(reg => {
+                this.dados = reg.map(m => new PropostaListaRelatorioModel(m));
+                this.dataSource = new MatTableDataSource(this.dados);
+                this.paginator._intl.itemsPerPageLabel = 'Itens por página';
+                this.dataSource.paginator = this.paginator;
+                this.submitted = false;
+            });
+            // } else {
+            //     this.messageService.exibirAlerta('Informar pelo menos um campo de filtro no relatório.');
+            // }
         }
-    }
-
-    getTotalComissao() {
-        const valor = this.dados.map(t => t.valorComissaoDecimal).reduce((acc, value) => acc + value, 0);
-        return 'R$ ' + this.decimalPipe.transform(valor, '1.2-2').toString().replace('.', ',');
     }
 }

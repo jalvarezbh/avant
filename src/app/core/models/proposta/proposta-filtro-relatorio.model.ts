@@ -1,6 +1,6 @@
 import { isNullOrEmpty } from 'src/app/shared/util/util';
 
-export class ComissaoFiltroRelatorioModel {
+export class PropostaFiltroRelatorioModel {
     nome: string;
     situacao: string;
     dataInicial: string;

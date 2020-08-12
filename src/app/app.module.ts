@@ -23,7 +23,8 @@ import {
   MatRadioModule,
   MatTableModule,
   MatSortModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatCardModule
 } from '@angular/material';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -32,7 +33,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import {ChartsModule} from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 
 // @NG
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -89,6 +90,11 @@ import { CardAniversarioMesComponent } from './shared/card-aniversario-mes/card-
 import { ComparativoComissaoComponent } from './pages/comparativocomissao/comparativocomissao.component';
 import { ComparativoPropostaComponent } from './pages/comparativoproposta/comparativoproposta.component';
 import { RelatorioComissaoComponent } from './pages/relatoriocomissao/relatoriocomissao.component';
+import { RelatorioPropostaComponent } from './pages/relatorioproposta/relatorioproposta.component';
+import { RelatorioClienteComponent } from './pages/relatoriocliente/relatoriocliente.component';
+import { InicialComponent } from './pages/inicial/inicial.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { RedefinirSenhaComponent } from './pages/redefinirsenha/redefinirsenha.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -124,11 +130,13 @@ const customCurrencyMaskConfig = {
     FooterComponent,
     AniversarioComponent,
     CalendarioComponent,
+    InicialComponent,
     HomeComponent,
     LoginComponent,
     LoadingComponent,
     UsuarioComponent,
     AlterarSenhaComponent,
+    RedefinirSenhaComponent,
     PropostaComponent,
     PropostaPendenteComponent,
     PropostaAlterarComponent,
@@ -142,6 +150,9 @@ const customCurrencyMaskConfig = {
     ComparativoComissaoComponent,
     ComparativoPropostaComponent,
     RelatorioComissaoComponent,
+    RelatorioPropostaComponent,
+    RelatorioClienteComponent,
+    CadastroComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -158,6 +169,7 @@ const customCurrencyMaskConfig = {
     HttpClientModule,
     LoadingBarRouterModule,
     MatAutocompleteModule,
+    MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatDialogModule,

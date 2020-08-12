@@ -71,101 +71,99 @@
                             <ng-container matColumnDef="nome">
                                 <th mat-header-cell class="header-row" *matHeaderCellDef> Nome </th>
                                 <td mat-cell class="row-margin" *matCellDef="let row"> {{row.nome}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef>Valor Total Previsto </td>
+                            </ng-container>
+                            <ng-container matColumnDef="celular">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Celular </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.celular}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="email">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> E-mail </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.email}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="dataNascimento">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Data Nascimento </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.dataNascimento}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="possuiFilhos">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Possui Filhos? </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.possuiFilhos}} </td>
                             </ng-container>
                             <ng-container matColumnDef="numeroApolice">
-                                <th mat-header-cell class="header-row" *matHeaderCellDef> Número Apólice
-                                </th>
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Número Apólice</th>
                                 <td mat-cell class="row-margin" *matCellDef="let row"> {{row.numeroApolice}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
                             </ng-container>
-                            <ng-container matColumnDef="valorComissao">
-                                <th mat-header-cell class="header-row" *matHeaderCellDef> Valor Comissão
-                                </th>
-                                <td mat-cell class="row-margin" *matCellDef="let row">R$ {{row.valorComissao}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef> {{getTotalComissao()}} </td>
+                            <ng-container matColumnDef="valorMensal">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Valor Mensal</th>
+                                <td mat-cell class="row-margin" *matCellDef="let row">R$ {{row.valorMensal}} </td>
                             </ng-container>
-                            <ng-container matColumnDef="valorPago">
-                                <th mat-header-cell class="header-row" *matHeaderCellDef> Valor Proposta
-                                </th>
-                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.valorPago}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            <ng-container matColumnDef="formaPagamento">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Forma Pagamento </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.formaPagamento}} </td>
                             </ng-container>
-                            <ng-container matColumnDef="percentual">
-                                <th mat-header-cell class="header-row" *matHeaderCellDef> Percentual </th>
-                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.percentual}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            <ng-container matColumnDef="diaPagamento">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Dia Pagamento </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.diaPagamento}} </td>
                             </ng-container>
-                            <ng-container matColumnDef="dataPrevista">
-                                <th mat-header-cell class="header-row" *matHeaderCellDef> Data Prevista </th>
-                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.dataPrevista}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
-                            </ng-container>
-                            <ng-container matColumnDef="dataConfirmacao">
-                                <th mat-header-cell class="header-row" *matHeaderCellDef> Data Confirmação </th>
-                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.dataConfirmacao}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            <ng-container matColumnDef="dataInicio">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Data Início </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.dataInicio}} </td>
                             </ng-container>
                             <ng-container matColumnDef="situacao">
                                 <th mat-header-cell class="header-row" *matHeaderCellDef> Situação </th>
                                 <td mat-cell class="row-margin" *matCellDef="let row"> {{row.situacao}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                            </ng-container>
+                            <ng-container matColumnDef="ativo">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Ativo </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.ativo}} </td>
                             </ng-container>
                             <ng-container matColumnDef="produtoDescricao">
                                 <th mat-header-cell class="header-row" *matHeaderCellDef> Produto </th>
-                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.produtoDescricao}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.produtoDescricao}}
+                                </td>
                             </ng-container>
-                            <!-- <ng-container matColumnDef="produtoCobertura">
-                            <th mat-header-cell class="header-row" *matHeaderCellDef > Cobertura </th>
-                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.produtoCobertura}} </td>
-                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
-                        </ng-container>        -->
+                            <ng-container matColumnDef="produtoCobertura">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Cobertura </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.produtoCobertura}}
+                                </td>
+                            </ng-container>
                             <ng-container matColumnDef="faixaEtaria">
                                 <th mat-header-cell class="header-row" *matHeaderCellDef> Faixa Etária </th>
                                 <td mat-cell class="row-margin" *matCellDef="let row"> {{row.faixaEtaria}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
                             </ng-container>
-                            <!-- <ng-container matColumnDef="comissaoInicial">
-                            <th mat-header-cell class="header-row" *matHeaderCellDef > Percentual Inicial </th>
-                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoInicial}} </td>
-                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
-                        </ng-container>  
-                        <ng-container matColumnDef="comissaoAnual">
-                            <th mat-header-cell class="header-row" *matHeaderCellDef > Percentual Anual </th>
-                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoAnual}} </td>
-                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
-                        </ng-container>  
-                        <ng-container matColumnDef="comissaoFinal">
-                            <th mat-header-cell class="header-row" *matHeaderCellDef > Percentual Final </th>
-                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoFinal}} </td>
-                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
-                        </ng-container>  
-                        <ng-container matColumnDef="capitalSegurado">
-                            <th mat-header-cell class="header-row" *matHeaderCellDef > Capital Segurado </th>
-                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.capitalSegurado}} </td>
-                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
-                        </ng-container>  
-                        <ng-container matColumnDef="premioMinimo">
-                            <th mat-header-cell class="header-row" *matHeaderCellDef > Prêmio Mínimo </th>
-                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.premioMinimo}} </td>
-                            <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
-                        </ng-container>   -->
+                            <ng-container matColumnDef="comissaoInicial">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Percentual Inicial </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoInicial}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="comissaoAnual">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Percentual Anual </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoAnual}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="comissaoFinal">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Percentual Final </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoFinal}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="capitalSegurado">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Capital Segurado </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.capitalSegurado}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="premioMinimo">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Prêmio Mínimo </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.premioMinimo}} </td>
+                            </ng-container>
                             <ng-container matColumnDef="observacao">
                                 <th mat-header-cell class="header-row" *matHeaderCellDef> Observação </th>
                                 <td mat-cell class="row-margin" *matCellDef="let row"> {{row.observacao}} </td>
-                                <td mat-footer-cell class="footer-row" *matFooterCellDef></td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-                            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row"></tr>
-                            <tr mat-footer-row *matFooterRowDef="columnsToDisplay"></tr>
+                            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row">
+                            </tr>
                         </table>
                     </div>
                     <div class="d-flex justify-content-end">
-
                         <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
-                        <button class="btn" style="height: 40px;margin-top: 10px;" (click)="dados.length > 0 && exporter.exportTable('xlsx',{fileName:'RelatorioComissao'})">Excel</button>
-
+                        <button class="btn" style="height: 40px;margin-top: 10px;"
+                            (click)="dados.length > 0 && exporter.exportTable('xlsx',{fileName:'RelatorioProposta'})">Excel
+                        </button>
                     </div>
                 </form>
             </div>

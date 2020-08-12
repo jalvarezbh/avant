@@ -35,7 +35,7 @@ export class ComissaoDiariaComponent implements OnInit {
     decimalPipe = new DecimalPipe('en-US');
     dataReferencia = new Date();
     dataReferenciaTexto: string;
-    dataInicio = new FormControl({value: moment([this.dataReferencia.getFullYear(), this.dataReferencia.getMonth(), this.dataReferencia.getDate()]), disabled: true});
+    dataInicio = new FormControl({ value: moment([this.dataReferencia.getFullYear(), this.dataReferencia.getMonth(), this.dataReferencia.getDate()]), disabled: true });
     constructor(
         private router: Router,
         private messageService: MessageService,
@@ -45,7 +45,12 @@ export class ComissaoDiariaComponent implements OnInit {
 
     ngOnInit() {
         if (this.loginService.getUserLogon()) {
-            this.buscarPesquisaBanco();
+            this.loginService.getUserTempoAcesso().then(reg => {
+                if (!reg) {
+                    this.router.navigateByUrl('login');
+                }
+                this.buscarPesquisaBanco();
+            });
         }
         else {
             this.router.navigateByUrl('login');
@@ -83,7 +88,7 @@ export class ComissaoDiariaComponent implements OnInit {
 
     async confirmarPagamento(id: string) {
         const comissaoLinha = [];
-        comissaoLinha.push({id});
+        comissaoLinha.push({ id });
         await this.fluxoService.setConfirmarFluxoMensalLancamentos(comissaoLinha).toPromise().then(reg => {
             this.messageService.exibirSucesso('Comissão confirmada com sucesso!');
             this.buscarPesquisaBanco();
@@ -92,7 +97,7 @@ export class ComissaoDiariaComponent implements OnInit {
 
     async cancelarPagamento(id: string) {
         const comissaoLinha = [];
-        comissaoLinha.push({id});
+        comissaoLinha.push({ id });
         await this.fluxoService.setCancelarFluxoMensalLancamentos(comissaoLinha).toPromise().then(reg => {
             this.messageService.exibirSucesso('Comissão cancelada com sucesso!');
             this.buscarPesquisaBanco();

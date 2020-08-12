@@ -15,6 +15,11 @@ import { ComissaoPeriodoComponent } from './pages/comissaoperiodo/comissaoperiod
 import { ComparativoComissaoComponent } from './pages/comparativocomissao/comparativocomissao.component';
 import { ComparativoPropostaComponent } from './pages/comparativoproposta/comparativoproposta.component';
 import { RelatorioComissaoComponent } from './pages/relatoriocomissao/relatoriocomissao.component';
+import { RelatorioPropostaComponent } from './pages/relatorioproposta/relatorioproposta.component';
+import { RelatorioClienteComponent } from './pages/relatoriocliente/relatoriocliente.component';
+import { InicialComponent } from './pages/inicial/inicial.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { RedefinirSenhaComponent } from './pages/redefinirsenha/redefinirsenha.component';
 
 const routes: Routes = [
   {
@@ -22,7 +27,9 @@ const routes: Routes = [
     component: PagesLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent, data: { extraParameter: '' } },
-      { path: '', component: LoginComponent, data: { extraParameter: '' } }
+      { path: 'cadastro', component: CadastroComponent, data: { extraParameter: '' } },
+      { path: 'redefinir', component: RedefinirSenhaComponent, data: { extraParameter: '' } },
+      { path: '', component: InicialComponent, data: { extraParameter: '' } }
     ]
   },
   {
@@ -38,7 +45,9 @@ const routes: Routes = [
       { path: 'propostapendente', component: PropostaPendenteComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostalistar', component: PropostaListarComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'propostaalterar', component: PropostaAlterarComponent, data: { extraParameter: 'propostaForm' } },
+      { path: 'relatoriocliente', component: RelatorioClienteComponent, data: { extraParameter: 'relatorioForm' } },
       { path: 'relatoriocomissao', component: RelatorioComissaoComponent, data: { extraParameter: 'relatorioForm' } },
+      { path: 'relatorioproposta', component: RelatorioPropostaComponent, data: { extraParameter: 'relatorioForm' } },
       { path: 'usuario', component: UsuarioComponent, data: { extraParameter: 'cadastroForm' } },
       { path: 'alterarsenha', component: AlterarSenhaComponent, data: { extraParameter: 'cadastroForm' } },
     ]
