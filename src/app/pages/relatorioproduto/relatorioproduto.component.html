@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card content">
+            <div class="card-body">
+                <label class="card-title">Relatório Produtos</label>
+                <form name="dadosForm" [formGroup]="dadosForm" (ngSubmit)="buscarPesquisaBanco()">
+                    <div class="row card-search">
+                        <mat-form-field class="card-input-text col-md-6">
+                            <mat-label>Descrição</mat-label>
+                            <input matInput formControlName="descricao" placeholder="Descrição">
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-3">
+                            <mat-label>Percentual 1º Ano</mat-label>
+                            <input matInput formControlName="percentual" placeholder="Percentual 1º Ano" type="number">
+                        </mat-form-field>
+                        <mat-form-field class="card-input-text col-md-3">
+                            <mat-label>Capital Segurado</mat-label>
+                            <input matInput formControlName="capitalSegurado" placeholder="Capital Segurado" type="number">
+
+                        </mat-form-field>
+                        <div class="div-btn col-md-12">
+                            <button class="btn btn-pesquisar">Pesquisar</button>
+                        </div>
+                    </div>
+                    <div style="width: 100%; overflow-x: scroll;">
+                        <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter"
+                            class="mat-elevation-z8">
+                            <ng-container matColumnDef="produtoDescricao">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Produto </th>
+                                <td mat-cell class="row-margin" style="width: 250px;" *matCellDef="let row">
+                                    {{row.produtoDescricao}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="produtoCobertura">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Cobertura Adicional</th>
+                                <td mat-cell class="row-margin" style="width: 250px;" *matCellDef="let row">
+                                    {{row.produtoCobertura}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="faixaEtaria">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Faixa Etária </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.faixaEtaria}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="comissaoInicial">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Comissão 1º Ano </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoInicial}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="comissaoAnual">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Comissão Anual </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoAnual}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="comissaoFinal">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Comissão Final </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.comissaoFinal}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="capitalSegurado">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Capital Segurado </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.capitalSegurado}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="premioMinimo">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Prêmio Mínimo </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.premioMinimo}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="produtoAtivo">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Produto Ativo </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.produtoAtivo}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="ativo">
+                                <th mat-header-cell class="header-row" *matHeaderCellDef> Faixa Ativo </th>
+                                <td mat-cell class="row-margin" *matCellDef="let row"> {{row.ativo}} </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="element-row">
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+                        <button class="btn" style="height: 40px;margin-top: 10px;"
+                            (click)="dados.length > 0 && exporter.exportTable('xlsx',{fileName:'RelatorioProduto'})">Excel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

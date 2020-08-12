@@ -13,3 +13,5 @@ export * from './proposta/proposta-filtro-relatorio.model';
 export * from './proposta/proposta-lista-relatorio.model';
 export * from './cliente/cliente-filtro-relatorio.model';
 export * from './cliente/cliente-lista-relatorio.model';
+export * from './produto/produto-lista-relatorio.model';
+export * from './produto/produto-filtro-relatorio.model';

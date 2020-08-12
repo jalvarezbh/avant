@@ -20,6 +20,7 @@ import { RelatorioClienteComponent } from './pages/relatoriocliente/relatoriocli
 import { InicialComponent } from './pages/inicial/inicial.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { RedefinirSenhaComponent } from './pages/redefinirsenha/redefinirsenha.component';
+import { RelatorioProdutoComponent } from './pages/relatorioproduto/relatorioproduto.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
       { path: 'propostaalterar', component: PropostaAlterarComponent, data: { extraParameter: 'propostaForm' } },
       { path: 'relatoriocliente', component: RelatorioClienteComponent, data: { extraParameter: 'relatorioForm' } },
       { path: 'relatoriocomissao', component: RelatorioComissaoComponent, data: { extraParameter: 'relatorioForm' } },
+      { path: 'relatorioproduto', component: RelatorioProdutoComponent, data: { extraParameter: 'relatorioForm' } },
       { path: 'relatorioproposta', component: RelatorioPropostaComponent, data: { extraParameter: 'relatorioForm' } },
       { path: 'usuario', component: UsuarioComponent, data: { extraParameter: 'cadastroForm' } },
       { path: 'alterarsenha', component: AlterarSenhaComponent, data: { extraParameter: 'cadastroForm' } },

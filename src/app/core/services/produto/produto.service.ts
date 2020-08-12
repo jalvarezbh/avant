@@ -39,4 +39,11 @@ export class ProdutoService extends HttpBaseService {
         retorno.push(new AutoCompleteModel({ Descricao: 'Cancelado' }));
         return retorno;
     }
+
+    getBuscarRelatorioProdutos(filtro: any): Observable<any> {
+        const userLogin = this.loginService.getUserLogin();
+        filtro.idusuario = userLogin.id;
+        filtro.idempresa = userLogin.idempresa;
+        return this.Get('Produto/BuscarRelatorioProdutos', filtro);
+    }
 }

@@ -95,6 +95,7 @@ import { RelatorioClienteComponent } from './pages/relatoriocliente/relatoriocli
 import { InicialComponent } from './pages/inicial/inicial.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { RedefinirSenhaComponent } from './pages/redefinirsenha/redefinirsenha.component';
+import { RelatorioProdutoComponent } from './pages/relatorioproduto/relatorioproduto.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -153,6 +154,7 @@ const customCurrencyMaskConfig = {
     RelatorioPropostaComponent,
     RelatorioClienteComponent,
     CadastroComponent,
+    RelatorioProdutoComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
