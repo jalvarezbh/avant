@@ -5,19 +5,25 @@
                 <label class="card-title">Relatório Clientes</label>
                 <form name="dadosForm" [formGroup]="dadosForm" (ngSubmit)="buscarPesquisaBanco()">
                     <div class="row card-search">
-                        <mat-form-field class="card-input-text col-md-5">
+                        <mat-form-field class="card-input-text col-md-4">
                             <mat-label>Nome</mat-label>
                             <input matInput formControlName="nome" placeholder="Nome">
                         </mat-form-field>
-                        <mat-form-field class="card-input-text col-md-2">
-                            <mat-label>Aniversário Mês Inicial</mat-label>
+                        <mat-form-field class="card-input-text col-md-1">
+                            <mat-label>Mês Inicial</mat-label>
                             <input matInput formControlName="mesInicial" type="number" placeholder="Aniversário Mês Inicial">                           
                         </mat-form-field>
-                        <mat-form-field class="card-input-text col-md-2">
-                            <mat-label>Aniversário Mês Final</mat-label>
-                            <input matInput formControlName="mesFinal" type="number" placeholder="Aniversário Mês Final">
-                           
+                        <mat-form-field class="card-input-text col-md-1">
+                            <mat-label>Mês Final</mat-label>
+                            <input matInput formControlName="mesFinal" type="number" placeholder="Aniversário Mês Final">                           
                         </mat-form-field>
+                        <div class="card-radio-text col-md-3" style="margin-top: 12px;">
+                            <label> Gênero: </label>
+                            <mat-radio-group formControlName="genero">
+                                <mat-radio-button value="F">Feminino</mat-radio-button>
+                                <mat-radio-button value="M">Masculino</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
                         <div class="card-radio-text col-md-3" style="margin-top: 12px;">
                             <label> Possui filhos: </label>
                             <mat-radio-group formControlName="possuiFilhos">
@@ -47,6 +53,10 @@
                         <ng-container matColumnDef="dataNascimento">
                             <th mat-header-cell class="header-row" *matHeaderCellDef> Data Nascimento </th>
                             <td mat-cell class="row-margin" *matCellDef="let row"> {{row.dataNascimento}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="genero">
+                            <th mat-header-cell class="header-row" *matHeaderCellDef> Gênero </th>
+                            <td mat-cell class="row-margin" *matCellDef="let row"> {{row.genero}} </td>
                         </ng-container>
                         <ng-container matColumnDef="possuiFilhos">
                             <th mat-header-cell class="header-row" *matHeaderCellDef> Possui Filhos? </th>

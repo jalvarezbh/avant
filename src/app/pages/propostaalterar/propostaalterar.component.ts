@@ -129,6 +129,7 @@ export class PropostaAlterarComponent implements OnInit {
             this.dadosForm = this.formBuilder.group({
                 id: [this.proposta.id, ''],
                 nome: [this.proposta.nome, Validators.required],
+                genero: [this.proposta.genero, ''],
                 possuifilhos: [this.proposta.possuiFilho.toString(), Validators.required],
                 email: [this.proposta.email, Validators.compose([
                     Validators.required,
@@ -156,6 +157,7 @@ export class PropostaAlterarComponent implements OnInit {
             this.dadosForm = this.formBuilder.group({
                 id: ['', ''],
                 nome: ['', Validators.required],
+                genero: ['', ''],
                 possuifilhos: ['false', Validators.required],
                 email: ['', Validators.compose([
                     Validators.required,
@@ -209,36 +211,36 @@ export class PropostaAlterarComponent implements OnInit {
     }
 
     private autoCompleteForm() {
-        const produto = this.controlProduto.value ? this.controlProduto.value.id : '';
-        const faixa = this.controlFaixa.value ? this.controlFaixa.value.id : '';
-        const pagamento = this.controlPagamento.value ? this.controlPagamento.value.descricao : '';
-        const situacao = this.controlSituacao.value ? this.controlSituacao.value.descricao : '';
+        // const produto = this.controlProduto.value ? this.controlProduto.value.id : '';
+        // const faixa = this.controlFaixa.value ? this.controlFaixa.value.id : '';
+        // const pagamento = this.controlPagamento.value ? this.controlPagamento.value.descricao : '';
+        // const situacao = this.controlSituacao.value ? this.controlSituacao.value.descricao : '';
 
-        this.dadosForm.get('produto').setValue(produto);
-        this.dadosForm.get('faixa').setValue(faixa);
-        this.dadosForm.get('pagamento').setValue(pagamento);
-        this.dadosForm.get('situacao').setValue(situacao);
+        // this.dadosForm.get('produto').setValue(produto);
+        // this.dadosForm.get('faixa').setValue(faixa);
+        // this.dadosForm.get('pagamento').setValue(pagamento);
+        // this.dadosForm.get('situacao').setValue(situacao);
 
         this.celularNumber = this.dadosForm.value.celular;
         this.dadosForm.controls.celular.setValue(this.celularCode + this.dadosForm.value.celular);
     }
 
     private autoCompleteReturn() {
-        if (this.controlProduto.value) {
-            this.controlProduto.setValue(this.controlProduto.value);
-        }
+        // if (this.controlProduto.value) {
+        //     this.controlProduto.setValue(this.controlProduto.value);
+        // }
 
-        if (this.controlFaixa.value) {
-            this.controlFaixa.setValue(this.controlFaixa.value);
-        }
+        // if (this.controlFaixa.value) {
+        //     this.controlFaixa.setValue(this.controlFaixa.value);
+        // }
 
-        if (this.controlPagamento.value) {
-            this.controlPagamento.setValue(this.controlPagamento.value);
-        }
+        // if (this.controlPagamento.value) {
+        //     this.controlPagamento.setValue(this.controlPagamento.value);
+        // }
 
-        if (this.controlSituacao.value) {
-            this.controlSituacao.setValue(this.controlSituacao.value);
-        }
+        // if (this.controlSituacao.value) {
+        //     this.controlSituacao.setValue(this.controlSituacao.value);
+        // }
 
         this.dadosForm.controls.celular.setValue(this.celularNumber);
     }

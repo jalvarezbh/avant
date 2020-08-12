@@ -4,6 +4,7 @@ export class PropostaModel {
     email: string;
     celular: string;
     dataNascimento: Date;
+    genero: string;
     possuiFilho: boolean;
     numeroApolice: number;
     idProduto: string;
@@ -23,6 +24,7 @@ export class PropostaModel {
             this.nome = registro.Nome;
             this.email = registro.Email;
             this.celular = registro.Celular;
+            this.genero = registro.Genero;
             this.possuiFilho = registro.PossuiFilho;
             this.numeroApolice = registro.NumeroApolice;
             this.idProduto = registro.IdProduto;
@@ -53,14 +55,15 @@ export class PropostaModel {
             this.nome = registro.nome;
             this.email = registro.email;
             this.celular = registro.celular;
+            this.genero = registro.genero;
             this.possuiFilho = registro.possuifilhos;
             this.numeroApolice = registro.numeroApolice;
-            this.idProduto = registro.produto;
-            this.idProdutoValores = registro.faixa;
+            this.idProduto = registro.produto.id;
+            this.idProdutoValores = registro.faixa.id;
             this.valorMensal = registro.valorMensalPago;
-            this.formaPagamento = registro.pagamento;
+            this.formaPagamento = registro.pagamento.descricao;
             this.diaPagamento = registro.diaPagamento;
-            this.situacao = registro.situacao;
+            this.situacao = registro.situacao.descricao;
             this.ativo = registro.ativo;
             this.observacao = registro.observacao;
         }

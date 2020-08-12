@@ -6,6 +6,7 @@ export class ClienteListaRelatorioModel {
     celular: string;
     email: string;
     dataNascimento: string;
+    genero: string;
     possuiFilhos: string;
     datepipe = new DatePipe('en-US');
     constructor(registro: any) {
@@ -20,5 +21,16 @@ export class ClienteListaRelatorioModel {
         this.email = registro.Email;
         this.dataNascimento = this.datepipe.transform(new Date(registro.DataNascimento), 'dd/MM/yyyy');
         this.possuiFilhos = registro.PossuiFilho ? 'Sim' : 'Não';
+
+        switch (registro.Genero) {
+            case 'F':
+                this.genero = 'Feminino';
+                break;
+            case 'M':
+                this.genero = 'Masculino';
+                break;
+            default:
+                this.genero = 'Não Informado';
+        }
     }
 }

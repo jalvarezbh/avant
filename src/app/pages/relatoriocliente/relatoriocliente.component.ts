@@ -23,6 +23,7 @@ export class RelatorioClienteComponent implements OnInit {
         'celular',
         'email',
         'dataNascimento',
+        'genero',
         'possuiFilhos'];
 
     constructor(
@@ -34,6 +35,7 @@ export class RelatorioClienteComponent implements OnInit {
 
         this.dadosForm = this.formBuilder.group({
             nome: ['', ''],
+            genero: ['', ''],
             possuiFilhos: ['', ''],
             mesInicial: ['', ''],
             mesFinal: ['', ''],
@@ -54,6 +56,7 @@ export class RelatorioClienteComponent implements OnInit {
         if (this.dadosForm.valid) {
             const filtro = new ClienteFiltroRelatorioModel();
             filtro.nome = this.dadosForm.value.nome;
+            filtro.genero = this.dadosForm.value.genero;
             filtro.possuiFilhos = this.dadosForm.value.possuiFilhos;
             filtro.mesInicial = this.dadosForm.value.mesInicial ? this.dadosForm.value.mesInicial : '';
             filtro.mesFinal = this.dadosForm.value.mesFinal ? this.dadosForm.value.mesFinal : '';

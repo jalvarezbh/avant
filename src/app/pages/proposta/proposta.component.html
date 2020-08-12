@@ -23,7 +23,7 @@
                                 Campo E-mail é Obrigatório!
                             </mat-error>
                         </mat-form-field>
-                        <mat-form-field class="card-input-text col-md-4">
+                        <mat-form-field class="card-input-text col-md-3">
                             <mat-label>Data Nascimento</mat-label>
                             <input matInput formControlName="dataNascimento" [textMask]="{mask: datemask}"
                                 placeholder="Data Nascimento" required>
@@ -35,7 +35,7 @@
                                 Campo Data Nascimento é Obrigatório!
                             </mat-error>
                         </mat-form-field>
-                        <mat-form-field class="card-input-text col-md-4">
+                        <mat-form-field class="card-input-text col-md-3">
                             <mat-label style="padding-left: 50px;">Celular</mat-label>
                             <input id="celular" matInput ng2TelInput ng-intl-tel-input [textMask]="{mask: celularmask}"
                                 [ng2TelInputOptions]="{initialCountry: 'br'}"
@@ -45,7 +45,14 @@
                                 Campo Celular é Obrigatório!
                             </mat-error>
                         </mat-form-field>
-                        <div class="card-radio-text col-md-4">
+                        <div class="card-radio-text col-md-3">
+                            <label> Gênero: </label>
+                            <mat-radio-group formControlName="genero">
+                                <mat-radio-button value="F">Feminino</mat-radio-button>
+                                <mat-radio-button value="M">Masculino</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="card-radio-text col-md-3">
                             <label> Possui filhos: </label>
                             <mat-radio-group formControlName="possuifilhos">
                                 <mat-radio-button value="true">Sim</mat-radio-button>

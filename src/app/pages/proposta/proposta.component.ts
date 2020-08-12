@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 import { MessageService } from 'src/app/core/services/message/message.service';
@@ -10,7 +10,7 @@ import { getPhoneMask } from 'src/app/shared/util/util';
 import { DateValidator } from 'src/app/core/validator';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-import { DatePipe, DOCUMENT } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FluxoService } from 'src/app/core/services/fluxo/fluxo.service';
 
 @Component({
@@ -117,6 +117,7 @@ export class PropostaComponent implements OnInit, OnDestroy {
         this.dadosForm = this.formBuilder.group({
             id: ['', ''],
             nome: ['', Validators.required],
+            genero: ['', ''],
             possuifilhos: ['false', Validators.required],
             email: ['', Validators.compose([
                 Validators.required,
@@ -168,36 +169,36 @@ export class PropostaComponent implements OnInit, OnDestroy {
     }
 
     private autoCompleteForm() {
-        const produto = this.controlProduto.value ? this.controlProduto.value.id : '';
-        const faixa = this.controlFaixa.value ? this.controlFaixa.value.id : '';
-        const pagamento = this.controlPagamento.value ? this.controlPagamento.value.descricao : '';
-        const situacao = this.controlSituacao.value ? this.controlSituacao.value.descricao : '';
+        // const produto = this.controlProduto.value ? this.controlProduto.value.id : '';
+        // const faixa = this.controlFaixa.value ? this.controlFaixa.value.id : '';
+        // const pagamento = this.controlPagamento.value ? this.controlPagamento.value.descricao : '';
+        // const situacao = this.controlSituacao.value ? this.controlSituacao.value.descricao : '';
 
-        this.dadosForm.get('produto').setValue(produto);
-        this.dadosForm.get('faixa').setValue(faixa);
-        this.dadosForm.get('pagamento').setValue(pagamento);
-        this.dadosForm.get('situacao').setValue(situacao);
+        // this.dadosForm.get('produto').setValue(produto);
+        // this.dadosForm.get('faixa').setValue(faixa);
+        // this.dadosForm.get('pagamento').setValue(pagamento);
+        // this.dadosForm.get('situacao').setValue(situacao);
 
         this.celularNumber = this.dadosForm.value.celular;
         this.dadosForm.controls.celular.setValue(this.celularCode + this.dadosForm.value.celular);
     }
 
     private autoCompleteReturn() {
-        if (this.controlProduto.value) {
-            this.controlProduto.setValue(this.controlProduto.value);
-        }
+        // if (this.controlProduto.value) {
+        //     this.controlProduto.setValue(this.controlProduto.value);
+        // }
 
-        if (this.controlFaixa.value) {
-            this.controlFaixa.setValue(this.controlFaixa.value);
-        }
+        // if (this.controlFaixa.value) {
+        //     this.controlFaixa.setValue(this.controlFaixa.value);
+        // }
 
-        if (this.controlPagamento.value) {
-            this.controlPagamento.setValue(this.controlPagamento.value);
-        }
+        // if (this.controlPagamento.value) {
+        //     this.controlPagamento.setValue(this.controlPagamento.value);
+        // }
 
-        if (this.controlSituacao.value) {
-            this.controlSituacao.setValue(this.controlSituacao.value);
-        }
+        // if (this.controlSituacao.value) {
+        //     this.controlSituacao.setValue(this.controlSituacao.value);
+        // }
 
         this.dadosForm.controls.celular.setValue(this.celularNumber);
     }

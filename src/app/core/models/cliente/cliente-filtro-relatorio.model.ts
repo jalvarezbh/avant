@@ -5,6 +5,7 @@ export class ClienteFiltroRelatorioModel {
     possuiFilhos: string;
     mesInicial: string;
     mesFinal: string;
+    genero: string;
     idusuario: string;
     idempresa: string;
 
@@ -21,7 +22,9 @@ export class ClienteFiltroRelatorioModel {
         if (!isNullOrEmpty(this.mesFinal)) {
             return true;
         }
-
+        if (!isNullOrEmpty(this.genero)) {
+            return true;
+        }
         return false;
     }
 }
