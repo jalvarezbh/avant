@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/login/login.service';
-import { ProdutoModel, AutoCompleteModel, ComissaoListaRelatorioModel, PropostaFiltroRelatorioModel, PropostaListaRelatorioModel } from 'src/app/core/models';
+import { ProdutoModel, AutoCompleteModel, PropostaFiltroRelatorioModel, PropostaListaRelatorioModel } from 'src/app/core/models';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { DecimalPipe } from '@angular/common';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
