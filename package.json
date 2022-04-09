@@ -42,7 +42,7 @@
     "lodash-es": "^4.17.11",
     "mat-table-exporter": "^1.2.5",
     "material-steppers": "^2.0.0",
-    "moment": "^2.26.0",
+    "moment": "^2.29.2",
     "ng-bootstrap": "^1.6.3",
     "ng-wizard": "^1.0.0",
     "ng2-charts": "^2.3.2",
